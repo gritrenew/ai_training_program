@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Grenergy · Energía Inteligente: programa de formación en IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#073032; --spark:#85ED96; --purple:#93A2F5; --yellow:#F5E618;
+  --gray-l:#EBF0F0; --gray-m:#DAE0E0; --gray-d:#C0CCCC; --white:#FFFFFF;
+  --bg:#FFFFFF; --surface:#EBF0F0; --ink:#073032; --muted:#4A6466; --line:#DAE0E0;
+  --band:#073032; --band-ink:#FFFFFF; --band-muted:#C0CCCC; --band-line:#1C5154;
+  --font:"Sora","Helvetica Neue",Arial,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#073032; --surface:#0E3F42; --ink:#FFFFFF; --muted:#C0CCCC; --line:#1C5154;
+    --band:#04252A; --band-line:#164447;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#073032; --surface:#0E3F42; --ink:#FFFFFF; --muted:#C0CCCC; --line:#1C5154;
+  --band:#04252A; --band-line:#164447;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 4rem);scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-weight:300;font-size:1.0625rem;line-height:1.65}
+b,strong,h1,h2,h3,h4{font-weight:600}
+.wrap{max-width:1160px;margin:0 auto;padding:0 1.5rem}
+h1,h2,h3,h4{line-height:1.08;margin:0;letter-spacing:-.025em}
+p{margin:0 0 1rem;max-width:64ch}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--spark);outline-offset:3px;border-radius:4px}
+
+/* Header: numbered nav like grenergy.eu */
+.top{position:sticky;top:0;z-index:5;background:var(--band);color:var(--band-ink);padding-top:env(safe-area-inset-top,0px);border-bottom:1px solid var(--band-line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;min-height:4rem}
+.wordmark{display:inline-flex;align-items:center;text-decoration:none;color:var(--band-ink)}
+.logo{display:block;width:auto}
+.nav{display:flex;gap:1.6rem;overflow-x:auto;scrollbar-width:none}
+.nav a{text-decoration:none;font-size:.92rem;white-space:nowrap;color:var(--band-ink)}
+.nav a sup{color:var(--spark);font-size:.68rem;margin-right:.3rem;vertical-align:.45em}
+.nav a:hover{color:var(--spark)}
+@media (max-width:760px){.nav{display:none}}
+
+/* Hero */
+.hero{background:var(--band);color:var(--band-ink);padding:4.5rem 0 3.5rem;overflow:hidden}
+.hero h1{font-weight:400;font-size:clamp(3.4rem,12vw,9.5rem);letter-spacing:-.06em;line-height:.92}
+.hero h1 span{display:block;color:var(--spark)}
+.hero-foot{display:grid;grid-template-columns:1.2fr 1fr;gap:2.5rem;margin-top:3rem;align-items:end}
+.hero-foot p{color:var(--band-muted);font-size:1.12rem;margin:0}
+.hero-foot p b{color:var(--band-ink);font-weight:600}
+@media (max-width:760px){.hero-foot{grid-template-columns:1fr}}
+.battery{display:flex;align-items:center;gap:6px}
+.cells{flex:1;border:2px solid var(--gray-d);border-radius:12px;padding:6px;display:grid;grid-template-columns:repeat(24,1fr);gap:3px;height:72px}
+.cap{width:9px;height:28px;background:var(--gray-d);border-radius:0 4px 4px 0}
+.cells span{border-radius:3px;opacity:0;animation:charge .3s ease-out forwards}
+.c1{background:var(--spark)}.c2{background:var(--purple)}.c3{background:var(--yellow)}.c4{background:var(--white)}
+.legend{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin:.55rem 15px 0 0;font-size:.78rem;color:var(--band-muted)}
+.legend i{display:block;height:3px;margin-bottom:.35rem;border-radius:2px}
+@keyframes charge{to{opacity:1}}
+@media (prefers-reduced-motion: reduce){.cells span{animation:none;opacity:1}}
+
+/* Section heading pattern: "label — statement" like grenergy.eu */
+section{padding:5rem 0;border-bottom:1px solid var(--line)}
+.kicker{display:flex;flex-wrap:wrap;align-items:baseline;gap:.4rem 1rem;margin-bottom:2.2rem}
+.kicker small{font-size:1rem;color:var(--muted);font-weight:400}
+.kicker h2{font-weight:400;font-size:clamp(2rem,5vw,3.6rem);letter-spacing:-.045em;max-width:18ch}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+@media (max-width:760px){.two{grid-template-columns:1fr}}
+
+/* Lucky numbers */
+.numbers{background:var(--band);color:var(--band-ink);border-bottom:0}
+.numbers .kicker small{color:var(--band-muted)}
+.nums{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--band-line)}
+.nums li{padding:1.6rem 1.2rem 0 0;border-right:1px solid var(--band-line)}
+.nums li:last-child{border-right:0}
+.nums li+li{padding-left:1.2rem}
+.nums b{display:block;font-weight:400;font-size:clamp(3rem,7vw,5.5rem);letter-spacing:-.06em;line-height:1;color:var(--spark)}
+.nums span{color:var(--band-muted);font-size:.95rem}
+@media (max-width:760px){.nums{grid-template-columns:1fr 1fr}.nums li{border-right:0;padding-left:0 !important;border-bottom:1px solid var(--band-line);padding-bottom:1.2rem}}
+
+/* Groups */
+.groups{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+@media (max-width:900px){.groups{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.groups{grid-template-columns:1fr}}
+.group{background:var(--bg);padding:1.6rem 1.4rem 1.8rem}
+.group .letter{width:2.6rem;height:2.6rem;border-radius:50%;background:var(--spark);color:var(--forest);display:grid;place-items:center;font-weight:600;margin-bottom:1.4rem}
+.group h3{font-size:1.15rem;margin-bottom:.6rem}
+.group p{font-size:.92rem;margin:0 0 .6rem;color:var(--muted)}
+.group p.focus{color:var(--ink)}
+
+/* Pills */
+.format{list-style:none;padding:0;margin:0 0 2.5rem;display:flex;flex-wrap:wrap;gap:.6rem}
+.format li{border:1px solid var(--line);border-radius:999px;padding:.45rem 1rem;font-size:.92rem}
+.tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.2rem}
+.tab{font:inherit;font-size:.92rem;font-weight:400;color:var(--ink);background:transparent;border:1px solid var(--gray-d);border-radius:999px;padding:.55rem 1.15rem;cursor:pointer}
+.tab:hover{border-color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--mod,var(--spark));border-color:var(--mod,var(--spark));color:var(--forest);font-weight:600}
+.panel{background:var(--surface);border-radius:16px;padding:1.6rem 1.6rem .8rem;position:relative;overflow:hidden}
+.panel::before{content:"";position:absolute;inset:0 auto 0 0;width:6px;background:var(--mod,var(--spark))}
+.panel-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem;margin-bottom:.8rem}
+.panel-head h3{font-weight:400;font-size:1.6rem;letter-spacing:-.035em}
+.panel-head span{color:var(--muted);font-size:.92rem}
+.pill{display:grid;grid-template-columns:3rem 1fr;gap:1rem;padding:1rem 0;border-top:1px solid var(--line)}
+.pill .num{font-size:1.5rem;letter-spacing:-.04em;color:var(--muted)}
+.pill h4{font-size:1.02rem;margin-bottom:.2rem;letter-spacing:-.01em}
+.pill p{margin:0;font-size:.94rem;color:var(--muted)}
+
+/* Projects, like "Take a glance at our projects" */
+.projects{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+@media (max-width:900px){.projects{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.projects{grid-template-columns:1fr}}
+.project{background:var(--forest);color:#fff;border-radius:16px;padding:1.4rem;display:flex;flex-direction:column;min-height:260px;position:relative;overflow:hidden}
+.project::after{content:"";position:absolute;right:-30px;bottom:-30px;width:130px;height:130px;border-radius:50%;background:var(--acc);opacity:.9}
+.project h3{font-weight:400;font-size:1.5rem;letter-spacing:-.035em;margin-bottom:.4rem}
+.project .coords{font-size:.82rem;color:var(--gray-d)}
+.project dl{margin:auto 0 0;font-size:.85rem;position:relative;z-index:1;max-width:70%}
+.project dt{color:var(--gray-d)}
+.project dd{margin:0 0 .5rem}
+.project .use{font-size:.92rem;margin-top:1rem;color:#fff}
+
+/* Workshops */
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.8rem}
+.timeline{list-style:none;margin:0;padding:0}
+.ws{display:grid;grid-template-columns:8rem 1fr auto;gap:1.5rem;align-items:baseline;padding:1.2rem 0;border-top:1px solid var(--line)}
+.ws:last-child{border-bottom:1px solid var(--line)}
+.ws .when{font-size:1.05rem}
+.ws .when small{display:block;color:var(--muted);font-size:.82rem}
+.ws h3{font-weight:400;font-size:1.2rem;letter-spacing:-.02em;margin-bottom:.35rem}
+.ws .where{font-size:.9rem;color:var(--muted);margin:0}
+.chips{display:flex;gap:.3rem;flex-wrap:wrap;justify-content:flex-end}
+.chip{font-size:.8rem;border-radius:999px;padding:.15rem .6rem;background:var(--spark);color:var(--forest);font-weight:600;white-space:nowrap}
+.chip.dur{background:transparent;border:1px solid var(--gray-d);color:var(--ink);font-weight:400}
+.ws[hidden]{display:none}
+@media (max-width:640px){.ws{grid-template-columns:1fr;gap:.4rem}.chips{justify-content:flex-start}}
+
+/* Provider */
+.provider{display:grid;grid-template-columns:minmax(180px,240px) 1fr;gap:2rem;align-items:start;background:var(--surface);border-radius:16px;padding:1.6rem;margin-bottom:1.6rem}
+.provider-name small{display:block;color:var(--muted);font-size:.85rem}
+.provider-name b{display:block;font-size:1.7rem;letter-spacing:-.04em;line-height:1.1;margin-top:.2rem}
+.provider p{margin:0;font-size:.98rem}
+@media (max-width:640px){.provider{grid-template-columns:1fr;gap:.8rem}}
+.legend-focus{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.4rem}
+.chip.foc-t{background:var(--purple);color:var(--forest)}
+.chip.foc-c{background:var(--spark);color:var(--forest)}
+.chip.foc-i{background:transparent;border:1px solid var(--gray-d);color:var(--ink);font-weight:400}
+.ws .focus{font-size:.85rem;margin:.1rem 0 .35rem;display:flex;gap:.4rem;align-items:center;flex-wrap:wrap}
+.ws .focus .chip{font-size:.75rem}
+.ws .by{font-size:.85rem;color:var(--muted)}
+
+/* Workshop types & calendar */
+.sub{font-weight:400;font-size:1.6rem;letter-spacing:-.035em;margin:3rem 0 .6rem}
+.muted-p{color:var(--muted);margin-bottom:1.4rem}
+.types{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media (max-width:760px){.types{grid-template-columns:1fr}}
+.type{border-radius:16px;padding:1.6rem;background:var(--surface);border-top:6px solid}
+.type-c{border-color:var(--spark)}.type-t{border-color:var(--purple)}
+.type h4{font-size:1.25rem;letter-spacing:-.025em;margin:1rem 0 .6rem}
+.type p{font-size:.96rem}
+.type dl{margin:1rem 0 0;display:grid;grid-template-columns:auto 1fr;gap:.35rem 1rem;font-size:.9rem;border-top:1px solid var(--line);padding-top:1rem}
+.type dt{color:var(--muted)}.type dd{margin:0}
+.matrix-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:16px}
+.matrix{min-width:760px}
+.m-row{display:grid;grid-template-columns:150px repeat(7,1fr);border-top:1px solid var(--line)}
+.m-row:first-child{border-top:0}
+.m-row>div{padding:.8rem .6rem;border-left:1px solid var(--line);min-height:3.2rem}
+.m-row>div:first-child{border-left:0}
+.m-head>div{font-size:.88rem;color:var(--muted);min-height:0;padding:.6rem}
+.lane{display:flex;align-items:center}
+.cell-w{display:block;font-size:.82rem;line-height:1.3;border-radius:8px;padding:.45rem .55rem;color:var(--forest);font-weight:600;text-decoration:none}
+.cell-w small{display:block;font-weight:400;opacity:.8}
+.lane-c-w{background:var(--spark)}.lane-t-w{background:var(--purple)}
+.wcards{list-style:none;padding:0;margin:0;display:grid;gap:1rem}
+.wcard{display:grid;grid-template-columns:7rem 1fr;gap:1.5rem;border:1px solid var(--line);border-left:6px solid var(--acc);border-radius:16px;padding:1.4rem}
+.wcard[hidden]{display:none}
+.wcard .wn{font-size:2.4rem;letter-spacing:-.06em;line-height:1;color:var(--muted)}
+.wcard .wm{font-size:1rem;margin-top:.4rem}
+.wcard .wm small{display:block;color:var(--muted);font-size:.82rem}
+.wcard h4{font-size:1.25rem;letter-spacing:-.025em;margin:.6rem 0 .9rem}
+.wcard dl{margin:0;display:grid;grid-template-columns:8.5rem 1fr;gap:.5rem 1rem;font-size:.94rem}
+.wcard dt{color:var(--muted)}.wcard dd{margin:0}
+@media (max-width:640px){.wcard{grid-template-columns:1fr;gap:.6rem}.wcard dl{grid-template-columns:1fr;gap:.1rem}.wcard dd{margin-bottom:.5rem}}
+
+/* Case studies */
+.cases{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+@media (max-width:760px){.cases{grid-template-columns:1fr}}
+.case{border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;background:var(--bg)}
+.case-head{background:var(--forest);color:#fff;padding:1.4rem 1.5rem 1.3rem;border-top:6px solid var(--acc)}
+.case-tag{display:inline-block;font-size:.78rem;font-weight:600;background:var(--acc);color:var(--forest);border-radius:999px;padding:.15rem .65rem;margin-bottom:.8rem}
+.case-head h3{font-weight:400;font-size:1.7rem;letter-spacing:-.04em;margin-bottom:.4rem}
+.case-meta{font-size:.86rem;color:var(--gray-d);margin:0}
+.case-body{padding:1.3rem 1.5rem 1.5rem;flex:1}
+.case-label{font-size:.8rem;color:var(--muted);margin:0 0 .3rem;text-transform:uppercase;letter-spacing:.06em}
+.case-q{font-size:1.1rem;line-height:1.4;letter-spacing:-.01em;margin:0 0 1.2rem}
+.uses{list-style:none;margin:0;padding:0;display:grid;gap:.4rem}
+.use-link{display:grid;grid-template-columns:4.6rem 1fr auto;gap:.6rem;align-items:center;text-decoration:none;font-size:.9rem;padding:.55rem .75rem;border-radius:10px;background:var(--surface)}
+.use-link:hover{outline:1px solid var(--ink)}
+.use-k{font-size:.74rem;color:var(--muted)}
+.use-n{font-size:.9rem;color:var(--muted)}
+.note{margin-top:1.8rem;font-size:.95rem;color:var(--muted)}
+
+/* Trust band, like "In green we trust" */
+.trust{background:var(--spark);color:var(--forest);border-bottom:0;padding:4.5rem 0}
+.trust p.big{font-size:clamp(2.2rem,6vw,4.6rem);letter-spacing:-.05em;line-height:1;max-width:none;margin-bottom:2rem}
+.trust .two p{color:var(--forest)}
+
+/* KPIs */
+.kpis{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+@media (max-width:760px){.kpis{grid-template-columns:1fr}}
+.kpis li{background:var(--bg);padding:1.4rem}
+.kpis b{display:block;margin-bottom:.3rem}
+.kpis span{color:var(--muted);font-size:.93rem}
+
+footer{background:var(--band);color:var(--band-ink);padding:4rem 0 3rem}
+footer .ask{font-size:clamp(1.6rem,4vw,2.6rem);letter-spacing:-.04em;line-height:1.1;margin-bottom:2.5rem}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;border-top:1px solid var(--band-line);padding-top:1.5rem;color:var(--band-muted);font-size:.88rem}
+.btn{display:inline-block;margin-top:1.2rem;background:var(--spark);color:var(--forest);text-decoration:none;font-weight:600;font-size:.95rem;padding:.7rem 1.4rem;border-radius:999px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="wordmark" href="#inicio" aria-label="Grenergy, inicio"><svg class="logo" viewBox="0 0 212 39" style="height:1.6rem" role="img" aria-label="Grenergy"><path fill="currentColor" fill-rule="evenodd" d="M183.92 19.25 L183.75 18.75 L183.33 18.33 L182.17 18.08 L172.67 18.17 L172.17 18.50 L171.92 19.00 L171.83 21.25 L172.00 21.67 L172.75 22.17 L183.17 22.08 L183.83 21.58Z M118.42 19.42 L118.42 21.25 L118.83 21.83 L119.50 22.17 L128.08 22.17 L128.83 21.75 L129.08 20.92 L129.00 19.08 L128.75 18.50 L128.25 18.17 L119.83 18.08 L119.08 18.33Z M66.33 19.33 L66.33 21.25 L66.83 21.92 L67.50 22.17 L76.08 22.17 L76.67 21.92 L77.00 21.25 L76.92 19.00 L76.67 18.50 L76.08 18.17 L67.75 18.08 L67.00 18.33Z M28.92 19.25 L28.50 18.42 L27.08 18.08 L17.67 18.17 L17.08 18.58 L16.92 19.00 L16.83 21.33 L17.33 22.00 L17.75 22.17 L27.67 22.17 L28.50 21.92 L28.92 21.33Z M136.50 8.08 L136.17 8.50 L136.08 9.00 L136.17 31.58 L136.42 32.17 L136.83 32.58 L137.75 32.83 L139.50 32.75 L140.17 32.17 L140.50 31.25 L140.42 24.75 L140.92 24.00 L141.67 23.75 L145.08 23.75 L145.58 23.92 L146.75 25.33 L150.00 30.83 L151.00 32.00 L152.25 32.50 L154.42 32.50 L154.75 32.33 L155.08 31.83 L155.00 31.08 L151.08 24.75 L150.58 23.67 L150.83 23.08 L152.67 21.92 L153.83 20.75 L155.00 18.75 L155.42 16.92 L155.42 15.17 L154.83 12.67 L153.83 11.00 L151.83 9.17 L149.92 8.17 L147.42 7.75 L137.42 7.75Z M140.83 11.67 L141.50 11.17 L148.25 11.17 L149.50 11.75 L150.83 13.00 L151.58 14.92 L151.58 16.00 L150.75 18.00 L149.83 18.92 L148.25 19.92 L141.75 20.00 L141.00 19.75 L140.58 19.08 L140.67 12.17Z M186.08 7.50 L185.50 8.17 L185.75 9.08 L186.75 10.75 L187.33 12.17 L187.75 12.67 L188.33 14.08 L193.67 24.33 L193.75 31.50 L194.50 32.17 L197.33 32.17 L197.75 31.92 L198.00 31.42 L198.00 24.50 L198.17 23.92 L204.25 11.75 L204.75 11.08 L205.17 9.92 L205.83 9.00 L205.92 8.00 L205.33 7.42 L203.00 7.42 L202.17 7.75 L201.58 8.25 L200.17 10.75 L199.83 11.75 L199.25 12.58 L196.58 18.08 L195.92 18.83 L195.42 18.92 L195.08 18.58 L193.75 15.67 L193.08 14.67 L192.83 13.83 L192.33 13.17 L190.75 9.75 L189.75 8.08 L188.42 7.42Z M112.50 7.83 L112.08 8.50 L112.08 31.50 L112.33 32.17 L112.92 32.67 L113.75 32.83 L128.92 32.83 L129.67 32.58 L130.17 31.67 L130.25 30.25 L130.00 29.25 L129.25 28.75 L117.42 28.75 L116.58 28.25 L116.33 27.17 L116.33 12.75 L116.67 11.92 L117.42 11.50 L129.42 11.42 L129.92 11.00 L130.25 10.08 L130.25 8.83 L129.83 7.83 L129.17 7.42 L113.50 7.42Z M85.08 7.67 L84.42 8.58 L84.42 31.42 L84.83 32.33 L85.83 32.83 L87.58 32.75 L88.42 32.25 L88.75 31.50 L88.67 13.58 L88.92 12.58 L89.42 12.33 L89.92 12.92 L91.08 15.92 L91.83 17.17 L92.08 18.08 L92.83 19.33 L93.08 20.25 L93.83 21.50 L94.08 22.42 L94.83 23.67 L95.08 24.58 L95.83 25.83 L96.08 26.75 L96.83 28.00 L97.08 28.92 L97.75 30.00 L98.42 31.67 L99.25 32.58 L100.17 32.83 L104.17 32.83 L105.33 32.58 L105.92 31.58 L105.92 8.58 L105.75 8.17 L105.33 7.75 L104.42 7.42 L102.67 7.42 L102.25 7.58 L101.50 8.58 L101.42 27.00 L101.00 27.17 L100.00 26.08 L98.75 22.92 L98.17 22.00 L97.83 20.83 L97.08 19.58 L95.75 16.25 L95.08 15.17 L93.75 11.83 L91.92 8.17 L91.58 7.83 L90.50 7.42 L85.58 7.42Z M60.33 7.75 L59.92 8.67 L59.92 31.25 L60.25 32.42 L60.83 32.75 L61.83 32.83 L77.17 32.75 L77.50 32.58 L78.00 31.58 L78.00 29.58 L77.67 29.00 L77.08 28.75 L65.08 28.75 L64.42 28.42 L64.17 27.92 L64.08 12.83 L64.33 12.00 L65.08 11.50 L77.17 11.42 L77.75 11.00 L78.00 10.42 L78.00 8.50 L77.83 8.00 L77.42 7.58 L76.83 7.42 L61.25 7.42Z M35.08 7.67 L34.58 8.17 L34.33 8.83 L34.33 31.17 L34.67 32.17 L35.42 32.75 L37.17 32.83 L38.00 32.58 L38.50 32.08 L38.75 31.33 L38.67 24.83 L38.83 24.33 L39.25 23.92 L39.67 23.75 L43.25 23.75 L43.83 24.00 L44.58 24.75 L47.17 29.17 L49.08 31.92 L50.42 32.50 L52.50 32.50 L53.08 32.25 L53.33 31.83 L53.08 30.83 L48.83 23.92 L48.92 23.25 L51.25 21.58 L52.67 19.83 L53.67 17.17 L53.75 16.00 L53.58 14.58 L52.83 12.25 L51.92 10.83 L50.42 9.25 L49.00 8.33 L48.25 8.00 L45.92 7.50 L35.58 7.42Z M38.92 11.67 L39.50 11.17 L46.25 11.17 L47.42 11.67 L48.75 12.83 L49.50 15.00 L49.50 16.50 L48.83 18.08 L48.08 18.83 L46.25 19.92 L39.75 20.00 L39.17 19.83 L38.67 19.17 L38.75 12.08Z M16.75 7.17 L12.75 8.08 L10.33 9.33 L8.08 11.50 L6.25 14.25 L5.25 16.83 L5.00 18.33 L5.00 21.42 L5.25 23.08 L6.25 25.83 L8.08 28.42 L10.17 30.42 L12.75 31.83 L15.50 32.58 L18.25 32.75 L22.33 31.92 L24.42 30.58 L25.83 29.33 L26.75 28.17 L27.92 26.25 L28.50 24.50 L27.83 24.00 L25.33 24.00 L24.17 24.92 L23.75 25.67 L22.50 26.92 L21.42 27.67 L18.00 28.67 L16.75 28.67 L13.58 27.67 L12.00 26.58 L10.25 24.58 L9.25 21.42 L9.25 18.33 L10.17 15.50 L11.00 14.33 L12.08 13.25 L13.92 12.08 L17.33 11.17 L19.08 11.25 L20.08 11.75 L21.42 12.08 L22.92 13.00 L23.50 13.00 L25.50 11.92 L25.83 11.50 L25.75 10.83 L25.17 10.17 L21.83 8.00 L18.58 7.25Z M169.58 7.17 L166.92 8.08 L164.92 9.25 L163.00 11.08 L161.17 13.58 L160.17 15.92 L159.92 17.08 L159.75 20.17 L160.08 23.25 L161.00 25.58 L162.08 27.25 L163.50 28.92 L165.58 30.67 L167.92 31.75 L171.42 32.42 L173.08 32.42 L176.67 31.83 L178.58 30.75 L180.92 28.67 L182.83 25.67 L183.17 24.67 L183.08 24.25 L182.42 23.75 L180.42 23.75 L179.67 23.92 L179.17 24.25 L178.00 26.25 L176.33 27.67 L175.58 28.00 L172.92 28.67 L171.67 28.67 L169.25 28.00 L167.08 26.75 L166.17 25.92 L165.08 24.50 L164.08 21.25 L164.17 18.00 L165.00 15.58 L165.83 14.42 L167.08 13.17 L169.00 12.00 L171.67 11.25 L173.58 11.17 L175.17 11.83 L176.08 12.00 L177.25 12.83 L178.08 13.00 L178.75 12.75 L180.25 11.42 L180.42 10.42 L179.08 9.08 L177.08 8.00 L175.33 7.33 L173.25 7.00Z"/></svg></a>
+    <nav class="nav" aria-label="Secciones">
+      <a href="#programa"><sup>01</sup>Programa</a>
+      <a href="#personas"><sup>02</sup>Personas</a>
+      <a href="#pildoras"><sup>03</sup>Píldoras</a>
+            <a href="#talleres"><sup>04</sup>Talleres</a>
+      <a href="#medicion"><sup>05</sup>Medición</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero" id="inicio">
+  <div class="wrap">
+    <h1>Energía<span>Inteligente</span></h1>
+    <div class="hero-foot">
+      <p>Formación en IA para todos en Grenergy, a partir de diciembre de 2026. <b>On and on.</b></p>
+      <div>
+        <div class="battery" role="img" aria-label="24 micropíldoras en 24 semanas, una por semana, en 4 módulos"><div class="cells" id="cells"></div><div class="cap"></div></div>
+        <div class="legend">
+          <div><i style="background:var(--spark)"></i>Fundamentos</div>
+          <div><i style="background:var(--purple)"></i>Nuestro sector</div>
+          <div><i style="background:var(--yellow)"></i>Uso responsable</div>
+          <div><i style="background:var(--white)"></i>Mi trabajo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+<section id="programa">
+  <div class="wrap">
+    <div class="kicker"><small>programa —</small><h2>Una energía que se aprende</h2></div>
+    <div class="two">
+      <div>
+        <p>El AI Act exige desde 2025 que las empresas formen a su personal en IA. En Grenergy, la IA ya está presente en toda la cadena, de Development a la operación de baterías y la venta de energía.</p>
+      </div>
+      <div>
+        <p>Este programa busca darnos a todos un lenguaje común sobre la IA, usarla de forma segura y útil, y descubrir nuevas aplicaciones. Combina micropíldoras de 2–3 minutos con talleres prácticos impartidos con OpenWebinars.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="numbers">
+  <div class="wrap">
+    <div class="kicker"><small>en cifras —</small><h2>Nuestros números de la suerte</h2></div>
+    <ul class="nums">
+      <li><b>24</b><span>micropíldoras de 2–3 minutos</span></li>
+      <li><b>1</b><span>píldora por semana, durante 24 semanas</span></li>
+      <li><b>6</b><span>talleres focalizados con OpenWebinars</span></li>
+      <li><b>3</b><span>regiones: Europa, Norteamérica y Latinoamérica</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="personas">
+  <div class="wrap">
+    <div class="kicker"><small>personas —</small><h2>Cuatro itinerarios, un mismo lenguaje</h2></div>
+    <p style="margin-bottom:2rem;color:var(--muted)">Todos siguen las mismas micropíldoras; los talleres se diferencian por grupo.</p>
+    <div class="groups">
+      <div class="group"><div class="letter">A</div><h3>Construction y Operations</h3><p>Equipos de obra, técnicos de O&amp;M y personal de planta</p><p class="focus">La IA como apoyo en inspecciones, diagnóstico y seguridad</p></div>
+      <div class="group"><div class="letter">B</div><h3>Development, Power e ingeniería</h3><p>Desarrollo de proyectos, ingeniería, gestión de activos, trading, Greenbox, GR Power, IT</p><p class="focus">Datos, modelos predictivos, integración en los procesos</p></div>
+      <div class="group"><div class="letter">C</div><h3>Corporativo</h3><p>Personas, finanzas, relación con inversores, compras, legal, sostenibilidad, comunicación</p><p class="focus">Productividad diaria con IA generativa</p></div>
+      <div class="group"><div class="letter">D</div><h3>Dirección</h3><p>Directivos y responsables de área</p><p class="focus">Estrategia, gobernanza, riesgos, retorno</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="pildoras">
+  <div class="wrap">
+    <div class="kicker"><small>micropíldoras —</small><h2>Tres minutos que suman, semana a semana</h2></div>
+    <ul class="format">
+      <li>2–3 minutos, un solo concepto</li>
+      <li>Una por semana, cada martes, desde diciembre de 2026</li>
+      <li>Pausa en Navidad y Semana Santa; termina en junio de 2027</li>
+      <li>Desde el móvil, vía LMS o Teams</li>
+      <li>Subtitulado en español e inglés</li>
+      <li>Una pregunta de comprobación al final</li>
+    </ul>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div class="panel" role="tabpanel" id="panel"></div>
+  </div>
+</section>
+
+<section id="talleres">
+  <div class="wrap">
+    <div class="kicker"><small>talleres —</small><h2>Aprender haciendo, con OpenWebinars</h2></div>
+    <div class="provider">
+      <div class="provider-name"><small>Proveedor de formación</small><b>OpenWebinars</b></div>
+      <p>OpenWebinars, plataforma española de formación tecnológica para empresas, diseña e imparte los talleres junto con el equipo de Personas. Son 6 sesiones, aproximadamente una al mes, que complementan las micropíldoras: las píldoras dan a todos la misma base, y los talleres la llevan a la práctica.</p>
+    </div>
+
+    <h3 class="sub">Dos tipos de taller</h3>
+    <p class="muted-p">Cada taller se organiza de una de estas dos maneras. La diferencia está en quién asiste y en cómo se prepara el contenido.</p>
+    <div class="types">
+      <article class="type type-c">
+        <span class="chip foc-c">Por colectivo</span>
+        <h4>Pensado para un grupo concreto de personas</h4>
+        <p>Solo asiste ese colectivo, y todo el contenido se construye a partir de su trabajo diario: sus tareas, sus herramientas y sus casos.</p>
+        <dl><dt>Quién asiste</dt><dd>Un único colectivo, por convocatoria</dd><dt>Ejemplo</dt><dd>"IA en el campo", solo para Construction y Operations</dd></dl>
+      </article>
+      <article class="type type-t">
+        <span class="chip foc-t">Por tema</span>
+        <h4>Centrado en una habilidad o un tema de IA</h4>
+        <p>Abierto a personas de distintas áreas que necesitan ese tema, sea cual sea su departamento. Mezclar perfiles ayuda a compartir usos y casos.</p>
+        <dl><dt>Quién asiste</dt><dd>Personas de varias áreas, por inscripción</dd><dt>Ejemplo</dt><dd>"Datos y automatización", para quien trabaja con datos</dd></dl>
+      </article>
+    </div>
+
+    <h3 class="sub">Calendario de un vistazo</h3>
+    <div class="matrix-scroll">
+      <div class="matrix" role="table" aria-label="Calendario de talleres por tipo y mes">
+        <div class="m-row m-head" role="row"><div role="columnheader"></div><div role="columnheader">Dic</div><div role="columnheader">Ene</div><div role="columnheader">Feb</div><div role="columnheader">Mar</div><div role="columnheader">Abr</div><div role="columnheader">May</div><div role="columnheader">Jun</div></div>
+        <div class="m-row" role="row" id="lane-c"><div class="lane" role="rowheader"><span class="chip foc-c">Por colectivo</span></div></div>
+        <div class="m-row" role="row" id="lane-t"><div class="lane" role="rowheader"><span class="chip foc-t">Por tema</span></div></div>
+      </div>
+    </div>
+
+    <h3 class="sub">Detalle de cada taller</h3>
+    <div class="filters" role="group" aria-label="Filtrar por tipo de taller" id="filters"></div>
+    <ol class="wcards" id="wcards"></ol>
+    <p class="note">Máximo 20–25 participantes por sesión: si un colectivo es mayor, se repite la edición. Materiales compartidos tras cada taller y un breve cuestionario de satisfacción. Para el personal de campo, fecha y modalidad se acuerdan con Operations para evitar los picos de mantenimiento. A OpenWebinars se le pide asignar tutores con experiencia en solar y almacenamiento, y capacidad de impartir en español e inglés. En España, la formación puede bonificarse a través del crédito de FUNDAE.</p>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="wrap">
+    <p class="big">In green we trust.<br>Y en las personas que lo hacen posible.</p>
+    <div class="two">
+      <p>La red de AI Champions, formada en abril, sigue activa después del programa como primer punto de referencia para los compañeros de cada país y área.</p>
+      <p>Un canal de Teams dedicado recoge preguntas, ejemplos y casos de uso. El hackathon y demo day de cierre convierte la formación en proyectos y dan visibilidad a las mejores ideas ante la dirección.</p>
+    </div>
+  </div>
+</section>
+
+<section id="medicion">
+  <div class="wrap">
+    <div class="kicker"><small>medición —</small><h2>Lo que cuenta, y cómo lo contamos</h2></div>
+    <ul class="kpis">
+      <li><b>Finalización de píldoras</b><span>Objetivo: al menos el 85 %</span></li>
+      <li><b>Cuestionarios</b><span>Puntuación media en las preguntas de comprobación</span></li>
+      <li><b>Participación</b><span>Asistencia a los talleres por grupo y región</span></li>
+      <li><b>Autoevaluación</b><span>Competencias medidas antes y después del programa</span></li>
+      <li><b>Casos de uso</b><span>Propuestos y puestos en marcha</span></li>
+      <li><b>Adopción</b><span>Uso real de las herramientas aprobadas a los 6 meses</span></li>
+    </ul>
+    <p style="margin-top:2rem;color:var(--muted)">Estos datos, junto con los registros de asistencia, documentan también el cumplimiento de la obligación de alfabetización prevista por el AI Act.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="ask">Tus preguntas siempre son bienvenidas.</p>
+    <div class="row"><span class="wordmark"><svg class="logo" viewBox="0 0 212 39" style="height:1.4rem" role="img" aria-label="Grenergy"><path fill="currentColor" fill-rule="evenodd" d="M183.92 19.25 L183.75 18.75 L183.33 18.33 L182.17 18.08 L172.67 18.17 L172.17 18.50 L171.92 19.00 L171.83 21.25 L172.00 21.67 L172.75 22.17 L183.17 22.08 L183.83 21.58Z M118.42 19.42 L118.42 21.25 L118.83 21.83 L119.50 22.17 L128.08 22.17 L128.83 21.75 L129.08 20.92 L129.00 19.08 L128.75 18.50 L128.25 18.17 L119.83 18.08 L119.08 18.33Z M66.33 19.33 L66.33 21.25 L66.83 21.92 L67.50 22.17 L76.08 22.17 L76.67 21.92 L77.00 21.25 L76.92 19.00 L76.67 18.50 L76.08 18.17 L67.75 18.08 L67.00 18.33Z M28.92 19.25 L28.50 18.42 L27.08 18.08 L17.67 18.17 L17.08 18.58 L16.92 19.00 L16.83 21.33 L17.33 22.00 L17.75 22.17 L27.67 22.17 L28.50 21.92 L28.92 21.33Z M136.50 8.08 L136.17 8.50 L136.08 9.00 L136.17 31.58 L136.42 32.17 L136.83 32.58 L137.75 32.83 L139.50 32.75 L140.17 32.17 L140.50 31.25 L140.42 24.75 L140.92 24.00 L141.67 23.75 L145.08 23.75 L145.58 23.92 L146.75 25.33 L150.00 30.83 L151.00 32.00 L152.25 32.50 L154.42 32.50 L154.75 32.33 L155.08 31.83 L155.00 31.08 L151.08 24.75 L150.58 23.67 L150.83 23.08 L152.67 21.92 L153.83 20.75 L155.00 18.75 L155.42 16.92 L155.42 15.17 L154.83 12.67 L153.83 11.00 L151.83 9.17 L149.92 8.17 L147.42 7.75 L137.42 7.75Z M140.83 11.67 L141.50 11.17 L148.25 11.17 L149.50 11.75 L150.83 13.00 L151.58 14.92 L151.58 16.00 L150.75 18.00 L149.83 18.92 L148.25 19.92 L141.75 20.00 L141.00 19.75 L140.58 19.08 L140.67 12.17Z M186.08 7.50 L185.50 8.17 L185.75 9.08 L186.75 10.75 L187.33 12.17 L187.75 12.67 L188.33 14.08 L193.67 24.33 L193.75 31.50 L194.50 32.17 L197.33 32.17 L197.75 31.92 L198.00 31.42 L198.00 24.50 L198.17 23.92 L204.25 11.75 L204.75 11.08 L205.17 9.92 L205.83 9.00 L205.92 8.00 L205.33 7.42 L203.00 7.42 L202.17 7.75 L201.58 8.25 L200.17 10.75 L199.83 11.75 L199.25 12.58 L196.58 18.08 L195.92 18.83 L195.42 18.92 L195.08 18.58 L193.75 15.67 L193.08 14.67 L192.83 13.83 L192.33 13.17 L190.75 9.75 L189.75 8.08 L188.42 7.42Z M112.50 7.83 L112.08 8.50 L112.08 31.50 L112.33 32.17 L112.92 32.67 L113.75 32.83 L128.92 32.83 L129.67 32.58 L130.17 31.67 L130.25 30.25 L130.00 29.25 L129.25 28.75 L117.42 28.75 L116.58 28.25 L116.33 27.17 L116.33 12.75 L116.67 11.92 L117.42 11.50 L129.42 11.42 L129.92 11.00 L130.25 10.08 L130.25 8.83 L129.83 7.83 L129.17 7.42 L113.50 7.42Z M85.08 7.67 L84.42 8.58 L84.42 31.42 L84.83 32.33 L85.83 32.83 L87.58 32.75 L88.42 32.25 L88.75 31.50 L88.67 13.58 L88.92 12.58 L89.42 12.33 L89.92 12.92 L91.08 15.92 L91.83 17.17 L92.08 18.08 L92.83 19.33 L93.08 20.25 L93.83 21.50 L94.08 22.42 L94.83 23.67 L95.08 24.58 L95.83 25.83 L96.08 26.75 L96.83 28.00 L97.08 28.92 L97.75 30.00 L98.42 31.67 L99.25 32.58 L100.17 32.83 L104.17 32.83 L105.33 32.58 L105.92 31.58 L105.92 8.58 L105.75 8.17 L105.33 7.75 L104.42 7.42 L102.67 7.42 L102.25 7.58 L101.50 8.58 L101.42 27.00 L101.00 27.17 L100.00 26.08 L98.75 22.92 L98.17 22.00 L97.83 20.83 L97.08 19.58 L95.75 16.25 L95.08 15.17 L93.75 11.83 L91.92 8.17 L91.58 7.83 L90.50 7.42 L85.58 7.42Z M60.33 7.75 L59.92 8.67 L59.92 31.25 L60.25 32.42 L60.83 32.75 L61.83 32.83 L77.17 32.75 L77.50 32.58 L78.00 31.58 L78.00 29.58 L77.67 29.00 L77.08 28.75 L65.08 28.75 L64.42 28.42 L64.17 27.92 L64.08 12.83 L64.33 12.00 L65.08 11.50 L77.17 11.42 L77.75 11.00 L78.00 10.42 L78.00 8.50 L77.83 8.00 L77.42 7.58 L76.83 7.42 L61.25 7.42Z M35.08 7.67 L34.58 8.17 L34.33 8.83 L34.33 31.17 L34.67 32.17 L35.42 32.75 L37.17 32.83 L38.00 32.58 L38.50 32.08 L38.75 31.33 L38.67 24.83 L38.83 24.33 L39.25 23.92 L39.67 23.75 L43.25 23.75 L43.83 24.00 L44.58 24.75 L47.17 29.17 L49.08 31.92 L50.42 32.50 L52.50 32.50 L53.08 32.25 L53.33 31.83 L53.08 30.83 L48.83 23.92 L48.92 23.25 L51.25 21.58 L52.67 19.83 L53.67 17.17 L53.75 16.00 L53.58 14.58 L52.83 12.25 L51.92 10.83 L50.42 9.25 L49.00 8.33 L48.25 8.00 L45.92 7.50 L35.58 7.42Z M38.92 11.67 L39.50 11.17 L46.25 11.17 L47.42 11.67 L48.75 12.83 L49.50 15.00 L49.50 16.50 L48.83 18.08 L48.08 18.83 L46.25 19.92 L39.75 20.00 L39.17 19.83 L38.67 19.17 L38.75 12.08Z M16.75 7.17 L12.75 8.08 L10.33 9.33 L8.08 11.50 L6.25 14.25 L5.25 16.83 L5.00 18.33 L5.00 21.42 L5.25 23.08 L6.25 25.83 L8.08 28.42 L10.17 30.42 L12.75 31.83 L15.50 32.58 L18.25 32.75 L22.33 31.92 L24.42 30.58 L25.83 29.33 L26.75 28.17 L27.92 26.25 L28.50 24.50 L27.83 24.00 L25.33 24.00 L24.17 24.92 L23.75 25.67 L22.50 26.92 L21.42 27.67 L18.00 28.67 L16.75 28.67 L13.58 27.67 L12.00 26.58 L10.25 24.58 L9.25 21.42 L9.25 18.33 L10.17 15.50 L11.00 14.33 L12.08 13.25 L13.92 12.08 L17.33 11.17 L19.08 11.25 L20.08 11.75 L21.42 12.08 L22.92 13.00 L23.50 13.00 L25.50 11.92 L25.83 11.50 L25.75 10.83 L25.17 10.17 L21.83 8.00 L18.58 7.25Z M169.58 7.17 L166.92 8.08 L164.92 9.25 L163.00 11.08 L161.17 13.58 L160.17 15.92 L159.92 17.08 L159.75 20.17 L160.08 23.25 L161.00 25.58 L162.08 27.25 L163.50 28.92 L165.58 30.67 L167.92 31.75 L171.42 32.42 L173.08 32.42 L176.67 31.83 L178.58 30.75 L180.92 28.67 L182.83 25.67 L183.17 24.67 L183.08 24.25 L182.42 23.75 L180.42 23.75 L179.67 23.92 L179.17 24.25 L178.00 26.25 L176.33 27.67 L175.58 28.00 L172.92 28.67 L171.67 28.67 L169.25 28.00 L167.08 26.75 L166.17 25.92 L165.08 24.50 L164.08 21.25 L164.17 18.00 L165.00 15.58 L165.83 14.42 L167.08 13.17 L169.00 12.00 L171.67 11.25 L173.58 11.17 L175.17 11.83 L176.08 12.00 L177.25 12.83 L178.08 13.00 L178.75 12.75 L180.25 11.42 L180.42 10.42 L179.08 9.08 L177.08 8.00 L175.33 7.33 L173.25 7.00Z"/></svg></span><span>Personas · Programa Energía Inteligente · diciembre 2026 – junio 2027</span></div>
+  </div>
+</footer>
+
+<script>
+const modules = [
+  {name:"Fundamentos", weeks:"Semanas 1–6", color:"var(--spark)", pills:[
+    ["Qué es la IA (y qué no es)","La IA reconoce patrones en los datos: no piensa ni lo sabe todo"],
+    ["El machine learning en 3 minutos","Un modelo aprende de ejemplos, como un aprendiz de los casos pasados"],
+    ["IA generativa y chatbots","Cómo funcionan las herramientas que generan texto e imágenes"],
+    ["El arte del prompt","Contexto, rol, objetivo, formato: la fórmula de una buena petición"],
+    ["Las alucinaciones","La IA puede inventar datos con total seguridad: siempre hay que verificar"],
+    ["Los datos: el combustible de la IA","Datos de mala calidad producen resultados poco fiables"]]},
+  {name:"La IA en nuestro sector", weeks:"Semanas 7–12", color:"var(--purple)", pills:[
+    ["Predecir el sol","Meteorología y datos históricos para estimar la producción de mañana, también en el desierto de Atacama"],
+    ["Mantenimiento predictivo","Temperaturas y señales eléctricas anticipan la avería de inversores, trackers y baterías"],
+    ["Ojos digitales: drones y visión artificial","Puntos calientes y módulos dañados detectados automáticamente en plantas como Escuderos"],
+    ["Smart grid y equilibrio de la red","Cómo ayuda la IA a integrar las renovables en la red"],
+    ["Baterías y mercado","Cuándo cargar, cuándo vender: la IA en la operación y el trading de BESS como los de Greenbox"],
+    ["Del emplazamiento al gemelo digital","IA para elegir dónde construir y para simular una planta híbrida antes y después de existir"]]},
+  {name:"Uso responsable", weeks:"Semanas 13–18", color:"var(--yellow)", pills:[
+    ["El AI Act en 3 minutos","Las normas europeas y lo que significan para nosotros"],
+    ["Qué NO pegar en un chatbot","Datos personales, contratos y datos de planta permanecen protegidos"],
+    ["El sesgo","Cómo puede discriminar la IA y cómo darse cuenta"],
+    ["Deepfakes y phishing avanzado","Las nuevas estafas por voz y correo generadas con IA"],
+    ["La huella energética de la IA","La IA también consume energía: usarla con criterio es coherente con nuestra misión"],
+    ["Nuestra política de IA","Herramientas aprobadas, a quién preguntar, cómo informar de problemas"]]},
+  {name:"La IA en mi trabajo", weeks:"Semanas 19–24", color:"var(--gray-d)", pills:[
+    ["Correos y documentos más rápidos","Borradores, reformulaciones y traducciones"],
+    ["Resumir un informe técnico","De 40 páginas a los puntos esenciales, verificando las fuentes"],
+    ["Analizar datos con IA","Preguntas en lenguaje natural sobre una hoja de Excel"],
+    ["Reuniones y actas","Transcripción y resumen de las tareas a realizar"],
+    ["Pequeñas automatizaciones","Tareas repetitivas que se pueden delegar"],
+    ["¿Y ahora qué?","Cómo proponer un caso de uso y convertirse en AI Champion"]]}
+];
+
+const cells=document.getElementById("cells");
+for(let i=0;i<24;i++){const c=document.createElement("span");c.className="c"+(Math.floor(i/6)+1);c.style.animationDelay=(200+i*60)+"ms";cells.appendChild(c);}
+
+const tabs=document.getElementById("tabs"), panel=document.getElementById("panel");
+function showModule(idx){
+  const m=modules[idx];
+  panel.style.setProperty("--mod",m.color);
+  [...tabs.children].forEach((t,i)=>t.setAttribute("aria-selected",i===idx));
+  let h=`<div class="panel-head"><h3>${m.name}</h3><span>Módulo ${idx+1} · ${m.weeks}</span></div>`;
+  m.pills.forEach((p,j)=>{h+=`<div class="pill"><span class="num">${String(idx*6+j+1).padStart(2,"0")}</span><div><h4>${p[0]}</h4><p>${p[1]}</p></div></div>`;});
+  panel.innerHTML=h;
+}
+modules.forEach((m,i)=>{const b=document.createElement("button");b.className="tab";b.setAttribute("role","tab");b.textContent=m.name;b.style.setProperty("--mod",m.color);b.addEventListener("click",()=>showModule(i));tabs.appendChild(b);});
+showModule(0);
+
+const workshops=[
+  {m:1,month:"Diciembre 2026",week:"Semana 1",type:"c",title:"Kick-off: IA, estrategia, gobernanza y AI Act",who:"Dirección: comité de dirección y responsables de área",what:"Qué puede aportar la IA a Grenergy, cómo se gobierna su uso, qué exige el AI Act y qué prioridades fijamos para el programa",fmt:"3 h · Presencial",by:"OpenWebinars"},
+  {m:2,month:"Enero 2027",week:"Semana 3",type:"t",title:"IA generativa y prompting para el día a día",who:"Abierto a cualquier persona que trabaje con documentos, correo e informes (sobre todo Corporativo, Development y Power)",what:"Redactar, resumir y analizar documentos con las herramientas aprobadas, y qué información no debe compartirse con un chatbot",fmt:"3 h · Híbrido, en español con subtítulos en inglés",by:"OpenWebinars"},
+  {m:3,month:"Febrero 2027",week:"Semana 4",type:"c",title:"IA en el campo: inspecciones, diagnóstico y seguridad",who:"Construction y Operations: equipos de obra, técnicos de O&M y personal de planta",what:"Inspección con drones y visión artificial, diagnóstico de inversores, trackers y baterías, y uso de la IA para la seguridad en planta",fmt:"3 h · Presencial en una planta en España, retransmitido a Latinoamérica",by:"OpenWebinars"},
+  {m:4,month:"Marzo 2027",week:"Semana 4",type:"t",title:"Datos, modelos predictivos y automatización",who:"Abierto a quien trabaja con datos: ingeniería, gestión de activos, trading, finanzas, IT",what:"Preparar datos, entender modelos de previsión de producción y averías, y automatizar informes recurrentes",fmt:"4 h · Presencial, práctico",by:"OpenWebinars"},
+  {m:5,month:"Abril 2027",week:"Semana 3",type:"c",title:"Formación de AI Champions",who:"AI Champions: un voluntario por cada 20–25 personas, de todas las áreas y países",what:"Resolver dudas de los compañeros, detectar y documentar casos de uso, y aplicar la política de IA de Grenergy",fmt:"2 sesiones de 3 h · Híbrido",by:"OpenWebinars"},
+  {m:7,month:"Junio 2027",week:"Semana 2",type:"t",title:"Hackathon y demo day de cierre",who:"Abierto: equipos mixtos voluntarios de todas las áreas; Dirección como jurado",what:"Resolver en una jornada un reto real sobre nuestros activos y presentar las soluciones ante la dirección",fmt:"1 jornada · Presencial + streaming",by:"OpenWebinars facilita · Grenergy organiza"}
+];
+const TYPES={c:{label:"Por colectivo",chip:"foc-c",acc:"var(--spark)"},t:{label:"Por tema",chip:"foc-t",acc:"var(--purple)"}};
+const short=["","Kick-off Dirección","Prompting","IA en el campo","Datos y automatización","AI Champions","","Hackathon y demo day"];
+["c","t"].forEach(t=>{
+  const row=document.getElementById("lane-"+t);
+  for(let m=1;m<=7;m++){
+    const cell=document.createElement("div");cell.setAttribute("role","cell");
+    workshops.forEach((w,i)=>{if(w.m===m&&w.type===t){cell.innerHTML=`<a class="cell-w lane-${t}-w" href="#w${i+1}">${short[w.m]}<small>${w.week}</small></a>`;}});
+    row.appendChild(cell);
+  }
+});
+const wcards=document.getElementById("wcards");
+workshops.forEach((w,i)=>{
+  const T=TYPES[w.type];const li=document.createElement("li");li.className="wcard";li.id="w"+(i+1);li.dataset.type=w.type;li.style.setProperty("--acc",T.acc);
+  li.innerHTML=`<div><div class="wn">0${i+1}</div><div class="wm">${w.month}<small>${w.week}</small></div></div>
+  <div><span class="chip ${T.chip}">${T.label}</span><h4>${w.title}</h4>
+  <dl><dt>Para quién</dt><dd>${w.who}</dd><dt>Qué se trabaja</dt><dd>${w.what}</dd><dt>Formato</dt><dd>${w.fmt}</dd><dt>Imparte</dt><dd>${w.by}</dd></dl></div>`;
+  wcards.appendChild(li);
+});
+const filters=document.getElementById("filters");
+[["Todos los talleres",null],["Por colectivo","c"],["Por tema","t"]].forEach(([label,t],i)=>{
+  const b=document.createElement("button");b.className="tab";b.textContent=label;b.setAttribute("aria-pressed",i===0);b.setAttribute("aria-selected",i===0);
+  if(t)b.style.setProperty("--mod",TYPES[t].acc);
+  b.addEventListener("click",()=>{[...filters.children].forEach(x=>{x.setAttribute("aria-pressed",x===b);x.setAttribute("aria-selected",x===b)});[...wcards.children].forEach(li=>{li.hidden=t&&li.dataset.type!==t});});
+  filters.appendChild(b);
+});
+
+document.querySelectorAll(".use-link[data-module]").forEach(a=>a.addEventListener("click",()=>showModule(+a.dataset.module)));
+</script>
+</body>
+</html>
