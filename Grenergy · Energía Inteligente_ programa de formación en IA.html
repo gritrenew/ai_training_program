@@ -33,7 +33,7 @@ html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 4rem);scroll-behavio
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-weight:300;font-size:1.0625rem;line-height:1.65}
 b,strong,h1,h2,h3,h4{font-weight:600}
-.wrap{max-width:1160px;margin:0 auto;padding:0 1.5rem}
+.wrap{max-width:1368px;margin:0 auto;padding:0 1.5rem}
 h1,h2,h3,h4{line-height:1.08;margin:0;letter-spacing:-.025em}
 p{margin:0 0 1rem}
 a{color:inherit}
@@ -59,7 +59,7 @@ a{color:inherit}
 .hero-foot p b{color:var(--band-ink);font-weight:600}
 @media (max-width:760px){.hero-foot{grid-template-columns:1fr}}
 .hero-foot>div{width:100%;max-width:520px;justify-self:end}
-@media (min-width:761px){.hero-foot>div{margin-right:min(0px,calc((1160px - 100vw)/2 + 2.5rem))}}
+@media (min-width:761px){.hero-foot>div{margin-right:min(0px,calc((1368px - 100vw)/2 + 2.5rem))}}
 .battery{display:flex;align-items:center;gap:6px}
 .cells{flex:1;border:2px solid var(--gray-d);border-radius:12px;padding:6px;display:grid;grid-template-columns:repeat(7,1fr);gap:3px;height:68px}
 .cap{width:9px;height:27px;background:var(--gray-d);border-radius:0 4px 4px 0}
@@ -149,8 +149,9 @@ section{padding:5rem 0;border-bottom:1px solid var(--line)}
 @media (max-width:640px){.ws{grid-template-columns:1fr;gap:.4rem}.chips{justify-content:flex-start}}
 
 /* Provider */
-.provider{background:var(--surface);border-radius:16px;padding:1.6rem;margin-bottom:1.6rem}
-.provider p{margin:0;font-size:.98rem}
+.provider{background:var(--spark);color:var(--forest);border-radius:16px;padding:1.8rem 2rem;margin-bottom:1.6rem}
+.provider p{margin:0;font-size:1.3rem;line-height:1.45;letter-spacing:-.015em;font-weight:400;color:var(--forest)}
+.provider p b{font-weight:600}.provider p.sub-p{font-size:1rem;margin-top:.5rem}
 .legend-focus{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.4rem}
 .chip.foc-t{background:#C0CCCC;color:#041D1F;border:1px solid #C0CCCC}
 .chip.foc-c{background:#8B9494;color:#041D1F;border:1px solid #8B9494}
@@ -170,17 +171,31 @@ section{padding:5rem 0;border-bottom:1px solid var(--line)}
 .type p{font-size:.96rem}
 .type dl{margin:1rem 0 0;display:grid;grid-template-columns:auto 1fr;gap:.35rem 1rem;font-size:.9rem;border-top:1px solid var(--line);padding-top:1rem}
 .type dt{color:var(--muted)}.type dd{margin:0}
-.matrix-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:16px}
-.matrix{min-width:1060px}
-.m-row{display:grid;grid-template-columns:150px repeat(7,minmax(0,1fr));border-top:1px solid var(--line)}
-.m-row:first-child{border-top:0}
-.m-row>div{padding:.8rem .6rem;border-left:1px solid var(--line);min-height:3.2rem}
-.m-row>div:first-child{border-left:0}
-.m-head>div{font-size:.88rem;color:var(--muted);min-height:0;padding:.6rem}
-.lane{display:flex;align-items:center}
-.cell-w{display:block;font-size:.82rem;line-height:1.3;border-radius:8px;padding:.45rem .55rem;color:var(--forest);font-weight:600;text-decoration:none}
-.cell-w small{display:block;font-weight:400;opacity:.8}
-.lane-c-w{background:#8B9494;color:#041D1F;border:1px solid #8B9494}.lane-t-w{background:#C0CCCC;color:#041D1F;border:1px solid #C0CCCC}
+/* Year overview */
+.year-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:16px;margin-top:1rem}
+.year{min-width:1200px}
+.y-row{display:grid;grid-template-columns:80px repeat(12,minmax(0,1fr));border-top:1px solid var(--line)}
+.y-row:first-child{border-top:0}
+.y-row>div{padding:.5rem .3rem;border-left:1px solid var(--line);display:flex;align-items:center}
+.y-row>div:first-child{border-left:0}
+.y-head>div{font-size:.82rem;color:var(--muted)}
+.y-lane{font-size:.85rem;font-weight:600}
+.y-cell{display:block;width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.7rem;line-height:1.25;font-weight:600;color:var(--forest);background:var(--mod);border-radius:8px;padding:.4rem .35rem;text-decoration:none}
+.y-cell b{display:block;font-size:.7rem;opacity:.7}
+.y-w-c{background:#8B9494;color:#041D1F}.y-w-t{background:#C0CCCC;color:#041D1F}
+.y-free{font-size:.7rem;color:var(--muted);font-style:italic}
+/* Online levels */
+.levels{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+@media (max-width:760px){.levels{grid-template-columns:1fr}}
+.level{background:var(--surface);border-radius:16px;padding:1.6rem;display:flex;flex-direction:column}
+.lv-bars{display:flex;gap:4px;margin-bottom:1.2rem}
+.lv-bars i{width:22px;height:30px;border-radius:5px;background:var(--line)}
+.lv-bars i.on{background:var(--spark)}
+.level small{color:var(--muted);font-size:.8rem;text-transform:uppercase;letter-spacing:.06em}
+.level h3{font-weight:400;font-size:1.6rem;letter-spacing:-.035em;margin:.2rem 0 .5rem}
+.level p{color:var(--muted);font-size:.95rem;margin:0}
+.level p.cert{margin-top:auto;padding-top:1rem;border-top:1px solid var(--line);color:var(--ink);font-weight:600;font-size:.9rem}
+.level p:not(.cert){margin-bottom:1.2rem}
 .wcards{list-style:none;padding:0;margin:0;display:grid;gap:1rem}
 .wcard{display:grid;grid-template-columns:7rem 1fr;gap:1.5rem;border:1px solid var(--line);border-left:6px solid var(--acc);border-radius:16px;padding:1.4rem}
 .wcard[hidden]{display:none}
@@ -218,10 +233,6 @@ section{padding:5rem 0;border-bottom:1px solid var(--line)}
 .note{margin:1.8rem 0 0;padding-left:1.2rem;font-size:.95rem;color:var(--muted)}
 .note li{margin-bottom:.3rem}
 
-/* Trust band, like "In green we trust" */
-.trust{background:var(--spark);color:var(--forest);border-bottom:0;padding:4.5rem 0}
-.trust p.big{font-size:clamp(2.2rem,6vw,4.6rem);letter-spacing:-.05em;line-height:1;max-width:none;margin-bottom:2rem}
-.trust p{color:var(--forest)}.trust p.intro{margin:0}
 
 /* KPIs */
 .kpis{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
@@ -231,7 +242,7 @@ section{padding:5rem 0;border-bottom:1px solid var(--line)}
 .kpis span{color:var(--muted);font-size:.93rem}
 
 /* Interactive journey */
-.journey{--ink:#FFFFFF;--muted:#E2EAEA;--line:#4F8789;--bg:#357577;--gray-d:#FFFFFF;background:#2A6A6C;color:var(--ink);border-radius:20px;padding:2rem;display:grid;grid-template-columns:160px minmax(0,1fr);gap:2.5rem;align-items:center}
+.journey{--ink:#FFFFFF;--muted:#E2EAEA;--line:#4F8789;--bg:#357577;--gray-d:#FFFFFF;background:#2A6A6C;color:var(--ink);border-radius:20px;padding:2.6rem 2.4rem;display:grid;grid-template-columns:200px minmax(0,1fr);gap:2.5rem;align-items:center}
 .j-visual{display:flex;flex-direction:column;align-items:center;gap:.8rem}
 .j-batt{width:124px;height:auto;display:block;overflow:visible;filter:drop-shadow(0 10px 24px rgba(0,0,0,.25))}
 .j-shell{fill:rgba(0,0,0,.18);stroke:var(--ink);stroke-width:4}
@@ -240,19 +251,17 @@ section{padding:5rem 0;border-bottom:1px solid var(--line)}
 .j-batt .seg.on{fill:var(--mod)}
 .j-batt .seg.now{animation:jglow 1.6s ease-in-out infinite}
 @keyframes jglow{50%{opacity:.6}}
-.j-bolt{fill:var(--forest);stroke:#fff;stroke-width:3;stroke-linejoin:round;opacity:0;transform:scale(.6);transform-origin:61px 124px;transition:opacity .4s,transform .4s cubic-bezier(.3,1.6,.5,1)}
-.j-bolt.on{opacity:1;transform:none}
-.j-pct{text-align:center;line-height:1.1}
-.j-pct b{display:block;color:var(--spark);font-size:2.4rem;font-weight:400;letter-spacing:-.05em}
-.j-pct span{font-size:.85rem;color:var(--muted)}
+.j-pct{text-align:center;line-height:1.1;white-space:nowrap}
+.j-pct b{display:inline;color:var(--spark);font-size:2.4rem;font-weight:400;letter-spacing:-.05em}
+.j-pct span{font-size:.95rem;color:var(--muted);margin-left:.35rem}
 .j-mods{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));margin-bottom:1rem;font-size:.78rem;color:var(--muted)}
 .j-mods div{margin:0 6px;padding-top:.4rem;border-top:3px solid var(--mod);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.track{position:relative;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));margin:0 0 1.6rem}
-.track::before,.track .fill{content:"";position:absolute;top:22px;left:calc(100%/14);height:4px;border-radius:2px}
+.track{position:relative;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));margin:.4rem 0 2rem}
+.track::before,.track .fill{content:"";position:absolute;top:30px;left:calc(100%/14);height:4px;border-radius:2px}
 .track::before{right:calc(100%/14);background:var(--line)}
 .track .fill{width:0;background:linear-gradient(90deg,var(--spark),var(--purple),var(--yellow),#FFFFFF);transition:width .5s ease}
-.stop{position:relative;z-index:1;font:inherit;background:none;border:0;padding:0;cursor:pointer;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:.5rem;font-size:.85rem}
-.stop .dot{width:48px;height:48px;border-radius:50%;background:var(--bg);border:3px solid var(--line);display:grid;place-items:center;font-weight:600;color:var(--ink);transition:transform .2s,background .3s,border-color .3s}
+.stop{position:relative;z-index:1;font:inherit;background:none;border:0;padding:0;cursor:pointer;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:.6rem;font-size:.95rem}
+.stop .dot{width:64px;height:64px;font-size:1.1rem;border-radius:50%;background:var(--bg);border:3px solid var(--line);display:grid;place-items:center;font-weight:600;color:var(--ink);transition:transform .2s,background .3s,border-color .3s}
 .stop:hover .dot{border-color:var(--mod)}
 .stop.done .dot{background:var(--mod);border-color:var(--mod);color:var(--forest)}
 .stop[aria-selected="true"] .dot{transform:scale(1.18);box-shadow:0 0 0 6px color-mix(in srgb,var(--mod) 35%,transparent)}
@@ -290,7 +299,8 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;b
       <a href="#personas"><sup>03</sup>Personas</a>
       <a href="#pildoras"><sup>04</sup>Píldoras</a>
             <a href="#talleres"><sup>05</sup>Talleres</a>
-      <a href="#medicion"><sup>06</sup>Medición</a>
+      <a href="#online"><sup>06</sup>Online</a>
+      <a href="#medicion"><sup>07</sup>Medición</a>
     </nav>
   </div>
 </header>
@@ -317,7 +327,7 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;b
 <section id="programa">
   <div class="wrap">
     <div class="kicker"><small>programa —</small><h2>Una energía que se aprende</h2></div>
-    <p class="intro">En Grenergy, la IA ya está en cada fase de nuestro trabajo: del desarrollo de proyectos a la operación de baterías y la venta de energía. Este programa nos prepara a todos para aprovecharla con criterio y seguridad, compartir un mismo lenguaje y descubrir nuevas oportunidades, a través de micropíldoras de 2 minutos y talleres prácticos.</p>
+    <p class="intro">La IA ya está en todo nuestro trabajo, del desarrollo de proyectos a la venta de energía. Este programa nos prepara para usarla con criterio y seguridad, con píldoras de 2 minutos y talleres prácticos.</p>
   </div>
 </section>
 
@@ -326,15 +336,15 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;b
     <div class="kicker"><small>en cifras —</small><h2>Nuestros números de la suerte</h2></div>
     <ul class="nums">
       <li><b>7</b><span>micropíldoras de 2 minutos</span></li>
-      <li><b>1</b><span>píldora al mes, de diciembre a junio</span></li>
+      <li><b>12</b><span>meses de programa</span></li>
       <li><b>7</b><span>talleres prácticos con ejemplos</span></li>    </ul>
   </div>
 </section>
 
 <section id="recorrido">
   <div class="wrap">
-    <div class="kicker"><small>recorrido —</small><h2>Siete meses, una carga completa</h2></div>
-    <p class="muted-p">Cada mes suma energía: una píldora de 2 minutos y un taller con ejemplos. Pulsa un mes para ver qué toca o usa las flechas para recorrer el programa.</p>
+    <div class="kicker"><small>recorrido —</small><h2>Siete pasos, una carga completa</h2></div>
+    <p class="muted-p">Cada paso suma energía: una píldora de 2 minutos y un taller práctico.</p>
     <div class="journey">
       <div class="j-visual">
         <svg class="j-batt" viewBox="0 0 120 232" aria-hidden="true">
@@ -343,28 +353,30 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;b
           <rect class="j-cap" x="42" y="4" width="36" height="14" rx="5"/>
           <rect class="j-shell" x="12" y="18" width="96" height="210" rx="22"/>
           <g clip-path="url(#jclip)"><g id="jsegs"></g><rect x="22" y="30" width="76" height="186" fill="url(#jshine)"/></g>
-          <path id="jbolt" class="j-bolt" d="M66 82 L46 128 H60 L54 166 L76 114 H62 Z"/>
         </svg>
         <div class="j-pct"><b id="jcharge">14 %</b><span>de carga</span></div>
       </div>
       <div class="j-main">
         <div class="j-mods" id="jmods" aria-hidden="true"></div>
-        <div class="track" role="tablist" aria-label="Meses del programa" id="track"><span class="fill" id="fill"></span></div>
+        <div class="track" role="tablist" aria-label="Pasos del programa" id="track"><span class="fill" id="fill"></span></div>
         <div class="j-panel" role="tabpanel" id="jpanel" aria-live="polite"></div>
-        <div class="j-btns"><button type="button" id="jprev" aria-label="Mes anterior">←</button><button type="button" id="jnext" aria-label="Mes siguiente">→</button></div>
+        <div class="j-btns"><button type="button" id="jprev" aria-label="Paso anterior">←</button><button type="button" id="jnext" aria-label="Paso siguiente">→</button></div>
       </div>
     </div>
+    <h3 class="sub">El año de un vistazo</h3>
+    <p class="muted-p">Primero la píldora y, dos semanas después, el taller. Los meses libres son para practicar.</p>
+    <div class="year-scroll"><div class="year" id="year" role="table" aria-label="Distribución de píldoras y talleres en 12 meses"></div></div>
   </div>
 </section>
 
 <section id="personas">
   <div class="wrap">
     <div class="kicker"><small>personas —</small><h2>Cuatro itinerarios, un mismo lenguaje</h2></div>
-    <p style="margin-bottom:2rem;color:var(--muted)">Las micropíldoras son comunes a toda la plantilla; los talleres se adaptan a lo que necesita cada grupo.</p>
+    <p style="margin-bottom:2rem;color:var(--muted)">Las píldoras son para todos; los talleres se adaptan a cada grupo.</p>
     <div class="groups">
-      <div class="group"><div class="letter">A</div><h3>Development, Power e ingeniería</h3><p>Desarrollo de proyectos, ingeniería, gestión de activos, trading, Greenbox, GR Power</p><p class="focus">Datos, modelos predictivos, integración en los procesos</p></div>
-      <div class="group"><div class="letter">B</div><h3>Corporativo</h3><p>Personas, finanzas, relación con inversores, compras, legal, sostenibilidad, comunicación</p><p class="focus">Productividad diaria con IA generativa</p></div>
-      <div class="group"><div class="letter">C</div><h3>IT y Sistemas</h3><p>Tecnología, sistemas, ciberseguridad y gestión del dato</p><p class="focus">Integrar y proteger las herramientas de IA de la compañía</p></div>
+      <div class="group"><div class="letter">A</div><h3>Development, Power e ingeniería</h3><p>Proyectos, ingeniería, activos, trading, Greenbox, GR Power</p><p class="focus">Datos y modelos predictivos</p></div>
+      <div class="group"><div class="letter">B</div><h3>Corporativo</h3><p>Personas, finanzas, inversores, compras, legal, sostenibilidad, comunicación</p><p class="focus">Productividad con IA generativa</p></div>
+      <div class="group"><div class="letter">C</div><h3>IT y Sistemas</h3><p>Tecnología, ciberseguridad y datos</p><p class="focus">Integrar y proteger la IA</p></div>
       <div class="group"><div class="letter">D</div><h3>Dirección</h3><p>Directivos y responsables de área</p><p class="focus">Estrategia, gobernanza, riesgos, retorno</p></div>
     </div>
   </div>
@@ -372,14 +384,13 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;b
 
 <section id="pildoras">
   <div class="wrap">
-    <div class="kicker"><small>micropíldoras —</small><h2>Dos minutos que suman, mes a mes</h2></div>
+    <div class="kicker"><small>micropíldoras —</small><h2>Dos minutos que suman</h2></div>
     <ul class="format">
-      <li>2 minutos, un solo concepto</li>
-      <li>Una al mes, el primer martes, desde diciembre de 2026</li>
-      <li>Siete píldoras en total; termina en junio de 2027</li>
-      <li>Desde el móvil, vía LMS o Teams</li>
-      <li>Subtitulado en español e inglés</li>
-      <li>Una pregunta de comprobación o un mini reto al final</li>
+      <li>2 minutos, un concepto</li>
+      <li>7 píldoras en 12 meses</li>
+      <li>En el móvil, vía LMS o Teams</li>
+      <li>Subtítulos en español e inglés</li>
+      <li>Pregunta o mini reto final</li>
     </ul>
     <div class="tabs" role="tablist" id="tabs"></div>
     <div class="panel" role="tabpanel" id="panel"></div>
@@ -390,33 +401,25 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;b
   <div class="wrap">
     <div class="kicker"><small>talleres —</small><h2>Aprender haciendo</h2></div>
     <div class="provider">
-      <p>Las micropíldoras nos dan a todos la misma base; los talleres nos ayudan a ponerla en práctica. Son 7 sesiones, una al mes y sobre el mismo tema que la píldora, diseñadas e impartidas por un proveedor especializado en formación tecnológica junto con el equipo de HHRR.</p>
+      <p><b>Las píldoras dan la base; los talleres la llevan a la práctica.</b></p>
+      <p class="sub-p">7 sesiones al año, una por tema, con un proveedor especializado y el equipo de HHRR.</p>
     </div>
 
     <h3 class="sub">Dos tipos de taller</h3>
-    <p class="muted-p">Cada taller se organiza de una de estas dos maneras. La diferencia está en quién asiste y en cómo se prepara el contenido.</p>
+    <p class="muted-p">Cada taller es de uno de estos dos tipos.</p>
     <div class="types">
       <article class="type type-c">
         <span class="chip foc-c">Por colectivo</span>
-        <h4>Pensado para un grupo concreto de personas</h4>
-        <p>Solo asiste ese colectivo, y todo el contenido se construye a partir de su trabajo diario: sus tareas, sus herramientas y sus casos.</p>
-        <dl><dt>Quién asiste</dt><dd>Un único colectivo, por convocatoria</dd><dt>Ejemplo</dt><dd>"IA en Excel para finanzas", solo para Finanzas</dd></dl>
+        <h4>Para un colectivo concreto</h4>
+        <p>Con casos de su trabajo diario.</p>
+        <dl><dt>Quién asiste</dt><dd>Por convocatoria</dd><dt>Ejemplo</dt><dd>IA en Excel para finanzas</dd></dl>
       </article>
       <article class="type type-t">
         <span class="chip foc-t">Por tema</span>
-        <h4>Centrado en una habilidad o un tema de IA</h4>
-        <p>Abierto a personas de distintas áreas que necesitan ese tema, sea cual sea su departamento. Mezclar perfiles ayuda a compartir usos y casos.</p>
-        <dl><dt>Quién asiste</dt><dd>Personas de varias áreas, por inscripción</dd><dt>Ejemplo</dt><dd>"Power BI frente a informes con IA", para quien elabora informes</dd></dl>
+        <h4>Sobre un tema de IA</h4>
+        <p>Abierto a varias áreas para compartir casos.</p>
+        <dl><dt>Quién asiste</dt><dd>Por inscripción</dd><dt>Ejemplo</dt><dd>Power BI frente a informes con IA</dd></dl>
       </article>
-    </div>
-
-    <h3 class="sub">Calendario de un vistazo</h3>
-    <div class="matrix-scroll">
-      <div class="matrix" role="table" aria-label="Calendario de talleres por tipo y mes">
-        <div class="m-row m-head" role="row"><div role="columnheader"></div><div role="columnheader">Dic</div><div role="columnheader">Ene</div><div role="columnheader">Feb</div><div role="columnheader">Mar</div><div role="columnheader">Abr</div><div role="columnheader">May</div><div role="columnheader">Jun</div></div>
-        <div class="m-row" role="row" id="lane-c"><div class="lane" role="rowheader"><span class="chip foc-c">Por colectivo</span></div></div>
-        <div class="m-row" role="row" id="lane-t"><div class="lane" role="rowheader"><span class="chip foc-t">Por tema</span></div></div>
-      </div>
     </div>
 
     <h3 class="sub">Detalle de cada taller</h3>
@@ -424,26 +427,30 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;b
     <ol class="wcards" id="wcards"></ol>
 
     <h3 class="sub">Retos con IA</h3>
-    <p class="muted-p">En cada taller se resuelven retos prácticos con IA: se trata de practicar, no de ver más contenidos.</p>
+    <p class="muted-p">En cada taller se practica con retos, no con más teoría.</p>
     <ul class="retos">
-      <li><b>Personalización</b><span>Dar a la IA contexto, rol y estilo para que trabaje como tú</span></li>
-      <li><b>Plan de aprendizaje IA</b><span>Diseñar con la IA tu propio plan para seguir aprendiendo</span></li>
-      <li><b>Storytelling</b><span>Convertir datos e informes en un mensaje claro para tu audiencia</span></li>
-      <li><b>Marca personal</b><span>Mejorar tu perfil profesional y tu forma de comunicar con ayuda de la IA</span></li>
+      <li><b>Personalización</b><span>Que la IA trabaje con tu estilo</span></li>
+      <li><b>Plan de aprendizaje IA</b><span>Tu propio plan para seguir aprendiendo</span></li>
+      <li><b>Storytelling</b><span>De datos a un mensaje claro</span></li>
+      <li><b>Marca personal</b><span>Mejorar tu perfil y cómo comunicas</span></li>
     </ul>
     <ul class="note">
-      <li>Cada sesión tiene un máximo de 20–25 personas; si un colectivo es mayor, se organizan más ediciones.</li>
-      <li>Tras cada taller se comparten los materiales y un breve cuestionario de satisfacción.</li>
-      <li>Los tutores tendrán experiencia en solar y almacenamiento e impartirán en español e inglés.</li>
-      <li>En España, la formación es bonificable con el crédito de FUNDAE.</li>
+      <li>Máximo 20–25 personas por sesión.</li>
+      <li>Materiales y encuesta tras cada taller.</li>
+      <li>En español e inglés; bonificable con FUNDAE.</li>
     </ul>
   </div>
 </section>
 
-<section class="trust">
+<section id="online">
   <div class="wrap">
-    <p class="big">In green we trust.<br>Y en las personas que lo hacen posible.</p>
-    <p class="intro">La red de <b>AI Champions</b> sigue activa después del programa como primer punto de referencia para los compañeros de cada país y área. Un canal de Teams dedicado recoge preguntas, ejemplos y casos de uso, y da visibilidad a las mejores ideas ante la dirección.</p>
+    <div class="kicker"><small>formación online —</small><h2>A tu ritmo, en tres niveles</h2></div>
+    <p class="muted-p">Además, formación online con nuestro partner OpenWebinars: tres niveles, cada uno con su certificado.</p>
+    <div class="levels">
+      <article class="level"><div class="lv-bars" aria-hidden="true"><i class="on"></i><i></i><i></i></div><small>Nivel 1</small><h3>Básico</h3><p>Conceptos clave y primeros usos.</p><p class="cert">Certificado de nivel básico</p></article>
+      <article class="level"><div class="lv-bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></div><small>Nivel 2</small><h3>Intermedio</h3><p>Más partido a la IA en tu trabajo.</p><p class="cert">Certificado de nivel intermedio</p></article>
+      <article class="level"><div class="lv-bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></div><small>Nivel 3</small><h3>Avanzado</h3><p>IA en procesos, datos y automatización.</p><p class="cert">Certificado de nivel avanzado</p></article>
+    </div>
   </div>
 </section>
 
@@ -451,12 +458,12 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;b
   <div class="wrap">
     <div class="kicker"><small>medición —</small><h2>Lo que cuenta, y cómo lo contamos</h2></div>
     <ul class="kpis">
-      <li><b>Finalización de píldoras</b><span>Objetivo: al menos el 85 %</span></li>
-      <li><b>Cuestionarios</b><span>Puntuación media en las preguntas de comprobación</span></li>
-      <li><b>Participación</b><span>Asistencia a los talleres por grupo y región</span></li>
-      <li><b>Autoevaluación</b><span>Competencias medidas antes y después del programa</span></li>
-      <li><b>Casos de uso</b><span>Propuestos y puestos en marcha</span></li>
-      <li><b>Adopción</b><span>Uso real de las herramientas aprobadas a los 6 meses</span></li>
+      <li><b>Finalización de píldoras</b><span>Al menos el 85 %</span></li>
+      <li><b>Cuestionarios</b><span>Media de las preguntas de comprobación</span></li>
+      <li><b>Participación</b><span>Asistencia por grupo y región</span></li>
+      <li><b>Autoevaluación</b><span>Competencias antes y después</span></li>
+      <li><b>Casos de uso</b><span>Propuestos y en marcha</span></li>
+      <li><b>Adopción</b><span>Uso real a los 6 meses</span></li>
     </ul>
   </div>
 </section>
@@ -470,18 +477,20 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;b
 
 <script>
 const modules = [
-  {name:"Fundamentos", weeks:"Diciembre–Enero", color:"var(--spark)", pills:[
-    ["Prompt engineering","Contexto, rol, objetivo y formato: cómo pedirle las cosas a la IA para obtener exactamente lo que necesitas","El prompt perfecto: mejora una petición en tres pasos hasta obtener lo que necesitas"],
-    ["Buenas prácticas y gobernanza","Cómo elegir el modelo adecuado, qué son los tokens de entrada y salida, y por qué evitar el Shadow AI: nunca uses cuentas personales","Revisa tus herramientas: comprueba que usas siempre la cuenta corporativa"]]},
-  {name:"Documentos y datos", weeks:"Febrero–Marzo", color:"var(--purple)", pills:[
-    ["Entender políticas y documentos complejos","Resumir, preguntar y comparar contratos, políticas y normativas largas para quedarte con lo esencial","Elige una política interna y pide a la IA sus cinco puntos clave"],
-    ["Power BI frente a informes con IA","Cuándo seguir con un cuadro de mando y cuándo pedir a la IA que analice y explique los datos por ti"]]},
-  {name:"Automatización", weeks:"Abril–Mayo", color:"var(--yellow)", pills:[
-    ["Integración de IA y datos","Conectar la IA a nuestras fuentes de datos para automatizar informes y tareas repetitivas"],
-    ["IA en Excel","Funcionalidades de IA en Excel aplicadas a modelling, structured finance, contabilidad y tesorería","Pide a la IA que te explique una fórmula compleja de tu hoja"]]},
-  {name:"Mi día a día", weeks:"Junio", color:"var(--gray-d)", pills:[
-    ["Dot, tu asistente","Un resumen recurrente cada mañana, peticiones generales y «Kill the dragon first»: empezar el día por la tarea más importante","Tu mapa de tareas: anota tres tareas de tu semana que Dot podría apoyar"]]}
+  {name:"Fundamentos", color:"var(--spark)", pills:[
+    ["Prompt engineering","Contexto, rol, objetivo y formato: cómo pedir a la IA lo que necesitas","Mejora una petición en tres pasos"],
+    ["Buenas prácticas y gobernanza","Elegir el modelo, entender los tokens y evitar el Shadow AI: nada de cuentas personales","Comprueba que usas siempre la cuenta corporativa"]]},
+  {name:"Documentos y datos", color:"var(--purple)", pills:[
+    ["Entender documentos complejos","Resumir y comparar contratos, políticas y normativas","Pide a la IA los cinco puntos clave de una política interna"],
+    ["Power BI frente a informes con IA","Cuándo usar un cuadro de mando y cuándo pedir el análisis a la IA"]]},
+  {name:"Automatización", color:"var(--yellow)", pills:[
+    ["Integración de IA y datos","Conectar la IA a nuestros datos para automatizar informes y tareas"],
+    ["IA en Excel","Modelling, structured finance, contabilidad y tesorería","Pide a la IA que te explique una fórmula compleja"]]},
+  {name:"Mi día a día", color:"var(--gray-d)", pills:[
+    ["Dot, tu asistente","Resumen de cada mañana, peticiones generales y «Kill the dragon first»","Anota tres tareas de tu semana que Dot podría apoyar"]]}
 ];
+const PILL_MONTHS=[1,2,4,6,8,10,12];
+const TOPICS=["Prompts","Gobernanza","Docs","Power BI","IA y datos","Excel","Dot"];
 
 const cells=document.getElementById("cells");
 modules.forEach((m,mi)=>m.pills.forEach(()=>{const c=document.createElement("span");c.className="c"+(mi+1);c.style.animationDelay=(200+cells.children.length*120)+"ms";cells.appendChild(c);}));
@@ -491,7 +500,7 @@ function showModule(idx){
   const m=modules[idx];
   panel.style.setProperty("--mod",m.color);
   [...tabs.children].forEach((t,i)=>t.setAttribute("aria-selected",i===idx));
-  let h=`<div class="panel-head"><h3>${m.name}</h3><span>Módulo ${idx+1} · ${m.weeks}</span></div>`;
+  let h=`<div class="panel-head"><h3>${m.name}</h3><span>Módulo ${idx+1} · ${(()=>{const s=modules.slice(0,idx).reduce((n,x)=>n+x.pills.length,0),a=PILL_MONTHS[s],b=PILL_MONTHS[s+m.pills.length-1];return a===b?`mes ${a}`:`meses ${a}–${b}`})()}</span></div>`;
   const first=modules.slice(0,idx).reduce((n,x)=>n+x.pills.length,0);
   m.pills.forEach((p,j)=>{h+=`<div class="pill"><span class="num">${String(first+j+1).padStart(2,"0")}</span><div><h4>${p[0]}</h4><p>${p[1]}</p>${p[2]?`<p class="reto"><b>Mini reto</b> · ${p[2]}</p>`:""}</div></div>`;});
   panel.innerHTML=h;
@@ -500,28 +509,19 @@ modules.forEach((m,i)=>{const b=document.createElement("button");b.className="ta
 showModule(0);
 
 const workshops=[
-  {m:1,month:"Diciembre 2026",week:"Semana 3",type:"t",title:"Prompt engineering en la práctica",who:"Abierto a toda la plantilla",what:"Ejemplos reales de peticiones a la IA: redactar, resumir y analizar, y cómo mejorar un prompt paso a paso",fmt:"2 h · Híbrido, en español con subtítulos en inglés"},
-  {m:2,month:"Enero 2027",week:"Semana 3",type:"t",title:"Buenas prácticas y gobernanza de la IA",who:"Abierto a toda la plantilla",what:"Elegir el modelo adecuado para cada tarea, entender el coste en tokens de entrada y salida, y evitar el Shadow AI y las cuentas personales",fmt:"2 h · Híbrido"},
-  {m:3,month:"Febrero 2027",week:"Semana 3",type:"t",title:"Entender políticas y documentos complejos",who:"Abierto a quien trabaja con contratos, políticas o normativas: legal, compras, HHRR, Development",what:"Resumir, consultar y comparar documentos largos con ejemplos de nuestro día a día",fmt:"2 h · Híbrido"},
-  {m:4,month:"Marzo 2027",week:"Semana 3",type:"t",title:"Power BI frente a informes con IA",who:"Abierto a quien elabora o consume informes: gestión de activos, trading, finanzas, IT",what:"Comparar un mismo análisis en Power BI y con IA, y decidir qué herramienta usar en cada caso",fmt:"3 h · Presencial, práctico"},
-  {m:5,month:"Abril 2027",week:"Semana 3",type:"t",title:"Integración de IA y datos: automatización",who:"Abierto a quien trabaja con datos y procesos repetitivos: ingeniería, IT, operaciones, finanzas",what:"Conectar la IA con nuestras fuentes de datos y automatizar informes y tareas recurrentes con ejemplos reales",fmt:"3 h · Presencial, práctico"},
-  {m:6,month:"Mayo 2027",week:"Semana 3",type:"c",title:"IA en Excel para finanzas",who:"Finanzas: modelling, structured finance, contabilidad y tesorería",what:"Funcionalidades de IA en Excel aplicadas a casos reales del equipo, impartido por un experto",fmt:"3 h · Presencial, práctico"},
-  {m:7,month:"Junio 2027",week:"Semana 3",type:"c",title:"Dot, el asistente de Dirección",who:"C-Level: comité de dirección",what:"Configurar un resumen recurrente de la mañana, delegar peticiones generales y aplicar «Kill the dragon first» para priorizar el día",fmt:"2 h · Presencial"}
+  {m:1,type:"t",title:"Prompt engineering en la práctica",who:"Toda la plantilla",what:"Redactar, resumir y analizar con ejemplos reales",fmt:"2 h · Híbrido"},
+  {m:2,type:"t",title:"Buenas prácticas y gobernanza",who:"Toda la plantilla",what:"Elegir el modelo, controlar los tokens y evitar el Shadow AI",fmt:"2 h · Híbrido"},
+  {m:4,type:"t",title:"Entender documentos complejos",who:"Legal, compras, HHRR, Development",what:"Resumir y comparar documentos de nuestro día a día",fmt:"2 h · Híbrido"},
+  {m:6,type:"t",title:"Power BI frente a informes con IA",who:"Quien elabora o consume informes",what:"Un mismo análisis en Power BI y con IA",fmt:"3 h · Presencial"},
+  {m:8,type:"t",title:"Integración de IA y datos",who:"Ingeniería, IT, operaciones, finanzas",what:"Automatizar informes y tareas recurrentes",fmt:"3 h · Presencial"},
+  {m:10,type:"c",title:"IA en Excel para finanzas",who:"Finanzas",what:"Casos reales del equipo, con un experto",fmt:"3 h · Presencial"},
+  {m:12,type:"c",title:"Dot, el asistente de Dirección",who:"C-Level",what:"Resumen de la mañana, delegar peticiones y priorizar el día",fmt:"2 h · Presencial"}
 ];
 const TYPES={c:{label:"Por colectivo",chip:"foc-c",acc:"#8B9494"},t:{label:"Por tema",chip:"foc-t",acc:"#C0CCCC"}};
-const short=["","Prompt engineering","Gobernanza","Documentos complejos","Power BI vs IA","IA y datos","IA en Excel","Dot para C&#8209;Level"];
-["c","t"].forEach(t=>{
-  const row=document.getElementById("lane-"+t);
-  for(let m=1;m<=7;m++){
-    const cell=document.createElement("div");cell.setAttribute("role","cell");
-    workshops.forEach((w,i)=>{if(w.m===m&&w.type===t){cell.innerHTML=`<a class="cell-w lane-${t}-w" href="#w${i+1}">${short[w.m]}<small>${w.week}</small></a>`;}});
-    row.appendChild(cell);
-  }
-});
 const wcards=document.getElementById("wcards");
 workshops.forEach((w,i)=>{
   const T=TYPES[w.type];const li=document.createElement("li");li.className="wcard";li.id="w"+(i+1);li.dataset.type=w.type;li.style.setProperty("--acc",T.acc);
-  li.innerHTML=`<div><div class="wn">0${i+1}</div><div class="wm">${w.month}<small>${w.week}</small></div></div>
+  li.innerHTML=`<div><div class="wn">0${i+1}</div><div class="wm">Mes ${w.m}</div></div>
   <div><span class="chip ${T.chip}">${T.label}</span><h4>${w.title}</h4>
   <dl><dt>Para quién</dt><dd>${w.who}</dd><dt>Qué se trabaja</dt><dd>${w.what}</dd><dt>Formato</dt><dd>${w.fmt}</dd></dl></div>`;
   wcards.appendChild(li);
@@ -536,22 +536,22 @@ const filters=document.getElementById("filters");
 
 document.querySelectorAll(".use-link[data-module]").forEach(a=>a.addEventListener("click",()=>showModule(+a.dataset.module)));
 
-const months=["Diciembre 2026","Enero 2027","Febrero 2027","Marzo 2027","Abril 2027","Mayo 2027","Junio 2027"];
+const months=Array.from({length:7});
 const pillsFlat=modules.flatMap(m=>m.pills.map(p=>({p,mod:m})));
 const track=document.getElementById("track"),fill=document.getElementById("fill"),jpanel=document.getElementById("jpanel"),jcharge=document.getElementById("jcharge"),jsegs=document.getElementById("jsegs"),jmods=document.getElementById("jmods");
 let jcur=0,jtimer=null;
 modules.forEach(m=>{const d=document.createElement("div");d.style.setProperty("--mod",m.color);d.style.gridColumn=`span ${m.pills.length}`;d.textContent=m.name.replace(/^La IA en ([a-z])/,(_,c)=>c.toUpperCase());jmods.appendChild(d);});
 const segH=(186-6*4)/7;
 pillsFlat.forEach((x,k)=>{const r=document.createElementNS("http://www.w3.org/2000/svg","rect");r.setAttribute("class","seg");r.setAttribute("x",22);r.setAttribute("width",76);r.setAttribute("rx",4);r.setAttribute("height",segH);r.setAttribute("y",216-(k+1)*segH-k*4);r.style.setProperty("--mod",x.mod.color);jsegs.appendChild(r);});
-months.forEach((mo,i)=>{const b=document.createElement("button");b.type="button";b.className="stop";b.setAttribute("role","tab");b.setAttribute("aria-label",`${mo}: ${pillsFlat[i].p[0]}`);b.style.setProperty("--mod",pillsFlat[i].mod.color);b.innerHTML=`<span class="dot">${String(i+1).padStart(2,"0")}</span>${mo.slice(0,3)}`;b.addEventListener("click",()=>{stopPlay();showMonth(i);});track.appendChild(b);});
+months.forEach((mo,i)=>{const b=document.createElement("button");b.type="button";b.className="stop";b.setAttribute("role","tab");b.setAttribute("aria-label",`Paso ${i+1}: ${pillsFlat[i].p[0]}`);b.style.setProperty("--mod",pillsFlat[i].mod.color);b.innerHTML=`<span class="dot">${String(i+1).padStart(2,"0")}</span>Mes ${PILL_MONTHS[i]}`;b.addEventListener("click",()=>{stopPlay();showMonth(i);});track.appendChild(b);});
 function showMonth(i){
-  jcur=i;const {p,mod}=pillsFlat[i];const w=workshops.find(x=>x.m===i+1);
+  jcur=i;const {p,mod}=pillsFlat[i];const w=workshops.find(x=>x.m===PILL_MONTHS[i]);
   [...track.querySelectorAll(".stop")].forEach((s,k)=>{s.setAttribute("aria-selected",k===i);s.classList.toggle("done",k<=i);s.tabIndex=k===i?0:-1;});
-  [...jsegs.children].forEach((s,k)=>{s.classList.toggle("on",k<=i);s.classList.toggle("now",k===i);});document.getElementById("jbolt").classList.toggle("on",i===6);
+  [...jsegs.children].forEach((s,k)=>{s.classList.toggle("on",k<=i);s.classList.toggle("now",k===i);});
   fill.style.width=`calc(${i/6} * (100% - 100%/7))`;
   jcharge.textContent=Math.round((i+1)/7*100)+" %";
-  jpanel.innerHTML=`<article class="j-card" style="--mod:${mod.color}"><small>Píldora ${String(i+1).padStart(2,"0")} · ${mod.name}</small><h4>${p[0]}</h4><p>${p[1]}</p>${p[2]?`<p class="reto"><b>Mini reto</b> · ${p[2]}</p>`:""}</article>`+
-    (w?`<article class="j-card" style="--mod:${w.type==="c"?"#8B9494":"#C0CCCC"}"><small>Taller ${w.type==="c"?"por colectivo":"por tema"} · ${w.week}</small><h4>${w.title}</h4><p>${w.who}</p><p class="reto">${w.fmt}</p></article>`
+  jpanel.innerHTML=`<article class="j-card" style="--mod:${mod.color}"><small>Mes ${PILL_MONTHS[i]} · Píldora ${String(i+1).padStart(2,"0")} · ${mod.name}</small><h4>${p[0]}</h4><p>${p[1]}</p>${p[2]?`<p class="reto"><b>Mini reto</b> · ${p[2]}</p>`:""}</article>`+
+    (w?`<article class="j-card" style="--mod:${w.type==="c"?"#8B9494":"#C0CCCC"}"><small>Taller ${w.type==="c"?"por colectivo":"por tema"}</small><h4>${w.title}</h4><p>${w.who}</p><p class="reto">${w.fmt}</p></article>`
       :`<article class="j-card empty"><small>Taller</small><h4>Este mes no hay taller</h4><p>Un buen momento para poner en práctica lo aprendido en las píldoras.</p></article>`);
 }
 function stopPlay(){clearInterval(jtimer);jtimer=null;}
@@ -564,6 +564,13 @@ if("IntersectionObserver" in window&&!matchMedia("(prefers-reduced-motion: reduc
   const jo=new IntersectionObserver(es=>{if(es[0].isIntersecting){jo.disconnect();if(jcur===0&&!jtimer)startPlay();}},{threshold:.6});
   jo.observe(document.querySelector(".journey"));
 }
+const year=document.getElementById("year");
+let yh=`<div class="y-row y-head"><div></div>${Array.from({length:12},(_,i)=>`<div>Mes ${i+1}</div>`).join("")}</div>`;
+yh+=`<div class="y-row"><div class="y-lane">Píldora</div>`;
+for(let m=1;m<=12;m++){const k=PILL_MONTHS.indexOf(m);yh+=k<0?`<div><span class="y-free">Práctica</span></div>`:`<div><span class="y-cell" style="--mod:${pillsFlat[k].mod.color}"><b>${String(k+1).padStart(2,"0")}</b>${TOPICS[k]}</span></div>`;}
+yh+=`</div><div class="y-row"><div class="y-lane">Taller</div>`;
+for(let m=1;m<=12;m++){const w=workshops.find(x=>x.m===m);yh+=w?`<div><a class="y-cell y-w-${w.type}" href="#w${workshops.indexOf(w)+1}">${w.type==="c"?"Colectivo":"Tema"}</a></div>`:`<div></div>`;}
+year.innerHTML=yh+`</div>`;
 </script>
 </body>
 </html>
