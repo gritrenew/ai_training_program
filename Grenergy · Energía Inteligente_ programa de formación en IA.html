@@ -254,11 +254,11 @@ section{padding:5rem 0;border-bottom:1px solid var(--line)}
 
 
 /* KPIs */
-.kpis{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-@media (max-width:760px){.kpis{grid-template-columns:1fr}}
-.kpis li{background:var(--bg);padding:1.4rem 1.5rem;border:1px solid var(--line);border-top:4px solid var(--spark);border-radius:16px}
-.kpis b{display:block;margin-bottom:.3rem;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em}
-.kpis span{color:var(--muted);font-size:.93rem}
+.kpis{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:1.5rem}
+@media (max-width:1000px){.kpis{grid-template-columns:repeat(3,1fr)}}@media (max-width:560px){.kpis{grid-template-columns:1fr 1fr}}
+.kpis li{padding:.7rem 0 0;border-top:2px solid var(--spark)}
+.kpis b{display:block;margin-bottom:.15rem;font-size:.95rem;font-weight:600}
+.kpis span{color:var(--muted);font-size:.88rem}
 
 /* Interactive journey */
 .journey{--ink:#FFFFFF;--muted:#E2EAEA;--line:#4F8789;--bg:#357577;--gray-d:#FFFFFF;background:radial-gradient(120% 140% at 0% 0%,#357577 0%,#2A6A6C 45%,#1D5558 100%);color:var(--ink);margin:2rem calc(50% - 50vw);padding:4rem max(1.5rem,calc(50vw - 660px));display:grid;grid-template-columns:200px minmax(0,1fr);gap:2.5rem;align-items:center}
@@ -395,7 +395,7 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;b
     <p style="margin-bottom:2rem;color:var(--muted)">Las píldoras son para todos; los talleres se adaptan a cada grupo.</p>
     <div class="groups" role="tablist" aria-label="Itinerarios por grupo">
       <button type="button" class="group" role="tab" data-ws="1,2,3,4,5" data-focus="Datos y modelos predictivos"><span class="letter">A</span><h3>Development, Power e ingeniería</h3><p>Proyectos, ingeniería, activos, trading, Greenbox, GR Power</p><span class="g-more">Ver itinerario →</span></button>
-      <button type="button" class="group" role="tab" data-ws="1,2,3,4,6" data-focus="Productividad con IA generativa"><span class="letter">B</span><h3>Corporativo</h3><p>Personas, finanzas, inversores, compras, legal, sostenibilidad, comunicación</p><span class="g-more">Ver itinerario →</span></button>
+      <button type="button" class="group" role="tab" data-ws="1,2,3,4,6" data-focus="Productividad con IA generativa"><span class="letter">B</span><h3>Corporativo</h3><p>Recursos humanos, finanzas, inversores, compras, legal, sostenibilidad, comunicación</p><span class="g-more">Ver itinerario →</span></button>
       <button type="button" class="group" role="tab" data-ws="1,2,4,5" data-focus="Integrar y proteger la IA"><span class="letter">C</span><h3>IT y Sistemas</h3><p>Tecnología, ciberseguridad y datos</p><span class="g-more">Ver itinerario →</span></button>
       <button type="button" class="group" role="tab" data-ws="1,2,7" data-focus="Estrategia, gobernanza, riesgos y retorno"><span class="letter">D</span><h3>Dirección</h3><p>Directivos y responsables de área</p><span class="g-more">Ver itinerario →</span></button>
     </div>
@@ -407,8 +407,8 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;b
   <div class="wrap">
     <div class="kicker"><small>talleres</small><h2>Aprender haciendo</h2></div>
     <div class="provider">
-      <p><b>Las píldoras dan la base; los talleres la llevan a la práctica.</b></p>
-      <p class="sub-p">Siete sesiones prácticas a lo largo del año, una por cada tema, diseñadas por expertos en formación junto con el equipo de HHRR.</p>
+      <p><b>Las píldoras dan la base, los talleres la llevan a la práctica.</b></p>
+      <p class="sub-p">7 sesiones prácticas a lo largo del año, una por cada tema, diseñadas por expertos en formación junto con el equipo de HHRR.</p>
     </div>
 
     <h3 class="sub">Dos tipos de taller</h3>
@@ -443,7 +443,7 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;b
     <ul class="note">
       <li>Máximo 20–25 personas por sesión.</li>
       <li>Materiales y encuesta tras cada taller.</li>
-      <li>En español e inglés; bonificable con FUNDAE.</li>
+      <li>En español e inglés.</li>
     </ul>
   </div>
 </section>
@@ -464,12 +464,12 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;b
   <div class="wrap">
     <div class="kicker"><small>medición</small><h2>Lo que cuenta, y cómo lo contamos</h2></div>
     <ul class="kpis">
-      <li><b>Finalización de píldoras</b><span>Al menos el 85 %</span></li>
-      <li><b>Cuestionarios</b><span>Media de las preguntas de comprobación</span></li>
-      <li><b>Participación</b><span>Asistencia por grupo y región</span></li>
-      <li><b>Autoevaluación</b><span>Competencias antes y después</span></li>
+      <li><b>Finalización</b><span>Al menos el 85 %</span></li>
+      <li><b>Cuestionarios</b><span>Nota media</span></li>
+      <li><b>Participación</b><span>Por grupo y región</span></li>
+      <li><b>Autoevaluación</b><span>Antes y después</span></li>
       <li><b>Casos de uso</b><span>Propuestos y en marcha</span></li>
-      <li><b>Adopción</b><span>Uso real a los 6 meses</span></li>
+      <li><b>Adopción</b><span>Uso real a 6 meses</span></li>
     </ul>
   </div>
 </section>
@@ -496,7 +496,7 @@ const modules = [
     ["Dot, tu asistente","Resumen de cada mañana, peticiones generales y «Kill the dragon first»","Anota tres tareas de tu semana que Dot podría apoyar"]]}
 ];
 const PILL_MONTHS=[1,2,4,6,8,10,12];
-const TOPICS=["Prompts","Gobernanza","Docs","Power BI","IA y datos","Excel","Dot"];
+const TOPICS=["Prompts","Gobernanza","Docs","Informes IA","IA y datos","Excel","Dot"];
 
 const cells=document.getElementById("cells");
 modules.forEach((m,mi)=>m.pills.forEach(()=>{const c=document.createElement("span");c.className="c"+(mi+1);c.style.animationDelay=(200+cells.children.length*120)+"ms";cells.appendChild(c);}));
@@ -507,7 +507,7 @@ const workshops=[
   {m:2,type:"t",title:"Buenas prácticas y gobernanza",who:"Toda la plantilla",what:"Elegir el modelo, controlar los tokens y evitar el Shadow AI",fmt:"2 h · Híbrido"},
   {m:4,type:"t",title:"Entender documentos complejos",who:"Legal, compras, HHRR, Development",what:"Resumir y comparar documentos de nuestro día a día",fmt:"2 h · Híbrido"},
   {m:6,type:"t",title:"Power BI frente a informes con IA",who:"Quien elabora o consume informes",what:"Un mismo análisis en Power BI y con IA",fmt:"3 h · Presencial"},
-  {m:8,type:"t",title:"Integración de IA y datos",who:"Ingeniería, IT, operaciones, finanzas",what:"Automatizar informes y tareas recurrentes",fmt:"3 h · Presencial"},
+  {m:8,type:"t",title:"Integración de IA y datos",who:"IT, operaciones, finanzas",what:"Automatizar informes y tareas recurrentes",fmt:"3 h · Presencial"},
   {m:10,type:"c",title:"IA en Excel para finanzas",who:"Finanzas",what:"Casos reales del equipo, con un experto",fmt:"3 h · Presencial"},
   {m:12,type:"c",title:"Dot, el asistente de Dirección",who:"C-Level",what:"Resumen de la mañana, delegar peticiones y priorizar el día",fmt:"2 h · Presencial"}
 ];
