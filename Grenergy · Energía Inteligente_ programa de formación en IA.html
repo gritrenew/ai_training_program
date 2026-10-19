@@ -84,13 +84,14 @@ section{padding:5rem 0;border-bottom:1px solid var(--line)}
 @media (max-width:760px){.two{grid-template-columns:1fr}}
 
 /* Lucky numbers */
-.numbers{background:var(--band);color:var(--band-ink);border-bottom:0}
+.numbers{background:var(--band);color:var(--band-ink);border-bottom:0;padding:2.6rem 0}
+.numbers .kicker{margin-bottom:1.2rem}.numbers .kicker h2{font-size:clamp(1.4rem,2.6vw,2rem)}
 .numbers .kicker small{color:var(--band-muted)}
 .nums{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--band-line)}
-.nums li{padding:1.6rem 1.2rem 0 0;border-right:1px solid var(--band-line)}
+.nums li{padding:1rem 1.2rem 0 0;display:flex;align-items:baseline;gap:.7rem;border-right:1px solid var(--band-line)}
 .nums li:last-child{border-right:0}
 .nums li+li{padding-left:1.2rem}
-.nums b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(3rem,7vw,5.5rem);letter-spacing:-.06em;line-height:1;color:var(--spark)}
+.nums b{display:inline;font-family:var(--display);font-weight:800;font-size:clamp(2rem,3.5vw,2.8rem);letter-spacing:-.04em;line-height:1;color:var(--spark)}
 .nums span{color:var(--band-muted);font-size:.95rem}
 @media (max-width:760px){.nums{grid-template-columns:1fr}.nums li{border-right:0;padding-left:0 !important;border-bottom:1px solid var(--band-line);padding-bottom:1.2rem}}
 
@@ -214,12 +215,13 @@ section{padding:5rem 0;border-bottom:1px solid var(--line)}
 .level p.cert{margin-top:auto;padding-top:1rem;border-top:1px solid var(--line);color:var(--ink);font-weight:600;font-size:.9rem}
 .level p:not(.cert){margin-bottom:1.2rem}
 .wcards{list-style:none;padding:0;margin:0;display:grid;gap:1rem}
-.wcard{display:grid;grid-template-columns:7rem 1fr;gap:1.5rem;border:1px solid var(--line);border-left:6px solid var(--acc);border-radius:16px;padding:1.4rem}
+.wcard{display:grid;grid-template-columns:5rem 1fr;gap:1.2rem;border:1px solid var(--line);border-left:6px solid var(--acc);border-radius:16px;padding:1.4rem}
 .wcard[hidden]{display:none}
 .wcard .wn{font-family:var(--display);font-weight:700;font-size:2.4rem;letter-spacing:-.06em;line-height:1;color:var(--muted)}
 .wcard .wm{font-size:1rem;margin-top:.4rem}
 .wcard .wm small{display:block;color:var(--muted);font-size:.82rem}
-.wcard h4{font-size:1.25rem;letter-spacing:-.025em;margin:.6rem 0 .9rem}
+.wcard h4{font-size:1.15rem;margin:.5rem 0 .3rem}
+.wcard p{margin:0;font-size:.94rem}.wcard .wwhat{color:var(--ink)}.wcard .wmeta{color:var(--muted);font-size:.88rem;margin-top:.2rem}
 .wcard dl{margin:0;display:grid;grid-template-columns:8.5rem 1fr;gap:.5rem 1rem;font-size:.94rem}
 .wcard dt{color:var(--muted)}.wcard dd{margin:0}
 @media (max-width:640px){.wcard{grid-template-columns:1fr;gap:.6rem}.wcard dl{grid-template-columns:1fr;gap:.1rem}.wcard dd{margin-bottom:.5rem}}
@@ -315,10 +317,9 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;b
       <a href="#programa"><sup>01</sup>Programa</a>
       <a href="#recorrido"><sup>02</sup>Recorrido</a>
       <a href="#personas"><sup>03</sup>Personas</a>
-      <a href="#pildoras"><sup>04</sup>Píldoras</a>
-            <a href="#talleres"><sup>05</sup>Talleres</a>
-      <a href="#online"><sup>06</sup>Online</a>
-      <a href="#medicion"><sup>07</sup>Medición</a>
+            <a href="#talleres"><sup>04</sup>Talleres</a>
+      <a href="#online"><sup>05</sup>Online</a>
+      <a href="#medicion"><sup>06</sup>Medición</a>
     </nav>
   </div>
 </header>
@@ -354,8 +355,8 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;b
   <div class="wrap">
     <div class="kicker"><small>en cifras</small><h2>Nuestros números de la suerte</h2></div>
     <ul class="nums">
-      <li><b>7</b><span>micropíldoras de 2 minutos</span></li>
       <li><b>12</b><span>meses de programa</span></li>
+      <li><b>7</b><span>micropíldoras de 2 minutos</span></li>
       <li><b>7</b><span>talleres prácticos con ejemplos</span></li>    </ul>
   </div>
 </section>
@@ -399,21 +400,6 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;b
       <button type="button" class="group" role="tab" data-ws="1,2,7" data-focus="Estrategia, gobernanza, riesgos y retorno"><span class="letter">D</span><h3>Dirección</h3><p>Directivos y responsables de área</p><span class="g-more">Ver itinerario →</span></button>
     </div>
     <div class="g-panel" id="gpanel" role="tabpanel" aria-live="polite"></div>
-  </div>
-</section>
-
-<section id="pildoras">
-  <div class="wrap">
-    <div class="kicker"><small>micropíldoras</small><h2>Dos minutos que suman</h2></div>
-    <ul class="format">
-      <li>2 minutos, un concepto</li>
-      <li>7 píldoras en 12 meses</li>
-      <li>En el móvil, vía LMS o Teams</li>
-      <li>Subtítulos en español e inglés</li>
-      <li>Pregunta o mini reto final</li>
-    </ul>
-    <div class="tabs" role="tablist" id="tabs"></div>
-    <div class="panel" role="tabpanel" id="panel"></div>
   </div>
 </section>
 
@@ -515,18 +501,6 @@ const TOPICS=["Prompts","Gobernanza","Docs","Power BI","IA y datos","Excel","Dot
 const cells=document.getElementById("cells");
 modules.forEach((m,mi)=>m.pills.forEach(()=>{const c=document.createElement("span");c.className="c"+(mi+1);c.style.animationDelay=(200+cells.children.length*120)+"ms";cells.appendChild(c);}));
 
-const tabs=document.getElementById("tabs"), panel=document.getElementById("panel");
-function showModule(idx){
-  const m=modules[idx];
-  panel.style.setProperty("--mod",m.color);
-  [...tabs.children].forEach((t,i)=>t.setAttribute("aria-selected",i===idx));
-  let h=`<div class="panel-head"><h3>${m.name}</h3><span>Módulo ${idx+1} · ${(()=>{const s=modules.slice(0,idx).reduce((n,x)=>n+x.pills.length,0),a=PILL_MONTHS[s],b=PILL_MONTHS[s+m.pills.length-1];return a===b?`mes ${a}`:`meses ${a}–${b}`})()}</span></div>`;
-  const first=modules.slice(0,idx).reduce((n,x)=>n+x.pills.length,0);
-  m.pills.forEach((p,j)=>{h+=`<div class="pill"><span class="num">${String(first+j+1).padStart(2,"0")}</span><div><h4>${p[0]}</h4><p>${p[1]}</p>${p[2]?`<p class="reto"><b>Mini reto</b> · ${p[2]}</p>`:""}</div></div>`;});
-  panel.innerHTML=h;
-}
-modules.forEach((m,i)=>{const b=document.createElement("button");b.className="tab";b.setAttribute("role","tab");b.textContent=m.name;b.style.setProperty("--mod",m.color);b.addEventListener("click",()=>showModule(i));tabs.appendChild(b);});
-showModule(0);
 
 const workshops=[
   {m:1,type:"t",title:"Prompt engineering en la práctica",who:"Toda la plantilla",what:"Redactar, resumir y analizar con ejemplos reales",fmt:"2 h · Híbrido"},
@@ -543,7 +517,7 @@ workshops.forEach((w,i)=>{
   const T=TYPES[w.type];const li=document.createElement("li");li.className="wcard";li.id="w"+(i+1);li.dataset.type=w.type;li.style.setProperty("--acc",T.acc);
   li.innerHTML=`<div><div class="wn">0${i+1}</div><div class="wm">Mes ${w.m}</div></div>
   <div><span class="chip ${T.chip}">${T.label}</span><h4>${w.title}</h4>
-  <dl><dt>Para quién</dt><dd>${w.who}</dd><dt>Qué se trabaja</dt><dd>${w.what}</dd><dt>Formato</dt><dd>${w.fmt}</dd></dl></div>`;
+  <p class="wwhat">${w.what}</p><p class="wmeta">${w.who} · ${w.fmt}</p></div>`;
   wcards.appendChild(li);
 });
 const filters=document.getElementById("filters");
@@ -554,7 +528,6 @@ const filters=document.getElementById("filters");
   filters.appendChild(b);
 });
 
-document.querySelectorAll(".use-link[data-module]").forEach(a=>a.addEventListener("click",()=>showModule(+a.dataset.module)));
 
 const months=Array.from({length:7});
 const pillsFlat=modules.flatMap(m=>m.pills.map(p=>({p,mod:m})));
